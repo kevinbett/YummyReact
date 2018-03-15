@@ -18,6 +18,8 @@ import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import Recipes from '../recipes/recipes';
 import Notifications from 'react-notify-toast';
+import axios from 'axios';
+import {notify} from 'react-notify-toast';
 
 
 
@@ -45,10 +47,19 @@ class Dashboard extends Component {
         event.preventDefault();
         this.props.history.push(`/login`);
     }
-    handleLogout(event) {
+    handleLogout = (event) => {
         event.preventDefault();
-        window.location.assign('/');
-        localStorage.clear();
+        var apiBaseUrl = "http://localhost:5000/api/auth/logout/";
+
+        axios.post(apiBaseUrl)
+            .then(response => {
+                localStorage.clear();
+                window.location.assign('/login')
+                
+            })
+            .catch(error => {
+                notify.show(error.response.data.message, 'error', 4000)
+            })
     }
     
     handleToggle = () => this.setState({open: !this.state.open});
