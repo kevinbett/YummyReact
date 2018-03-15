@@ -36,6 +36,7 @@ const buttonStyle = {
     color: 'white'
   };  
 
+
 class Dashboard extends Component {
     constructor(props) {
         super(props);      
@@ -47,19 +48,10 @@ class Dashboard extends Component {
         event.preventDefault();
         this.props.history.push(`/login`);
     }
-    handleLogout = (event) => {
-        event.preventDefault();
-        var apiBaseUrl = "http://localhost:5000/api/auth/logout/";
-
-        axios.post(apiBaseUrl)
-            .then(response => {
-                localStorage.clear();
-                window.location.assign('/login')
-                
-            })
-            .catch(error => {
-                notify.show(error.response.data.message, 'error', 4000)
-            })
+    handleLogout = () => {
+        localStorage.clear();
+        window.location.assign('/login');
+        notify.show("Successfully logged out", 'success', 4000);                
     }
     
     handleToggle = () => this.setState({open: !this.state.open});
@@ -71,7 +63,7 @@ class Dashboard extends Component {
                         <AppBar
                         onLeftIconButtonClick={this.handleToggle}
                         showMenuIconButton={false}
-                        iconElementRight={buttons}
+                        iconElementRight={<FlatButton label="Logout" onClick={this.handleLogout} style={buttonStyle}/>}
                         style={{backgroundColor: orange700}}>
                         <Notifications options={{zIndex: 5000}}/>
                         </AppBar>
@@ -90,19 +82,5 @@ class Dashboard extends Component {
         );
     }  
 }
-const buttons = (
-    
-    <ToolbarGroup>
-      <FlatButton label={window.localStorage.getItem('username')} onClick={(event) => this.handleLogout} style={buttonStyle}/>
-      <IconMenu
-        iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
-        anchorOrigin={{horizontal: 'left', vertical: 'top'}}
-        targetOrigin={{horizontal: 'left', vertical: 'bottom'}}
-        >
-        <MenuItem primaryText="Change password" />
-        <MenuItem primaryText="Sign out" onClick={(event) => this.handleLogout} />
-    </IconMenu>
-    </ToolbarGroup> 
-  );
 
 export default Dashboard;

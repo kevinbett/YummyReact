@@ -103,6 +103,7 @@ class CategoriesGet extends Component {
         const self = this;
         axios.get(apiBaseUrl, headers)
         .then(response => {
+            console.log(response);
             if (response.data.error) {
                 notify.show(response.data.error, "error", 4000)
             }

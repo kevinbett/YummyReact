@@ -62,10 +62,14 @@ class Register extends Component {
         axios.post(apiBaseUrl + 'register/', payload)
             .then(response => {
                 window.location.assign(`/login`) 
-                notify.toast(response.data.message, 'success', 4000)               
+                notify.show(response.data.message, 'success', 4000)               
             })
             .catch(error => {
-                notify.toast(error.response.data.message.error, 'error', 4000);
+                if (error.response.data.message.error) {
+                    notify.show(error.response.data.message.error, 'error', 4000);                    
+                } else if (error.response.data.message.email) {
+                   notify.show(error.response.data.message.email[0], 'error', 4000)
+                }
             })
     }
 

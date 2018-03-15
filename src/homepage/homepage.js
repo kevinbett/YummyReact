@@ -23,12 +23,6 @@ const buttonStyle = {
     backgroundColor: 'transparent',
     color: 'white'
   };
-const buttons = (
-    <ToolbarGroup>
-      <FlatButton label="Sign In" style={buttonStyle}/>
-      <FlatButton label="Sign Up" style={buttonStyle}/>      
-    </ToolbarGroup> 
-  );
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -45,8 +39,7 @@ class Home extends Component {
                         onLeftIconButtonClick={this.handleToggle}
                         showMenuIconButton={false}
                         style={{backgroundColor: orange700}}
-                        zDepth={2}
-                        iconElementRight={buttons}>
+                        zDepth={2}>
                         <Notifications/>
                     </AppBar>
                     </div>
