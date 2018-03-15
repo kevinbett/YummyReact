@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/kevinsamoei/YummyReact.svg?branch=develop)](https://travis-ci.org/kevinsamoei/YummyReact)
 ## YummyReact
 Yummy recipes provides a platform for users to keep track of their awesome recipes and share with others if they so wish.
 This is a front-end based that consumes an API made with Python/Flask.
