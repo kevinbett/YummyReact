@@ -65,7 +65,7 @@ class Register extends Component {
                 notify.toast(response.data.message, 'success', 4000)               
             })
             .catch(error => {
-                alert(error.response.data.message.error);
+                notify.toast(error.response.data.message.error, 'error', 4000);
             })
     }
 
