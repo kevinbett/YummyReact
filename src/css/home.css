@@ -1,0 +1,54 @@
+body {
+    font-family: Roboto, arial, sans-serif;
+    font-size: 14px;
+    line-height: 22px;
+    color: #848484;
+}
+.landing {
+    background: url('../img/yummy.jpg') no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+.Start {
+    padding-top: 250px;
+    text-align: center;
+}
+.appbar {
+    text-align: center;
+}
+.navmenu {
+    float: left;
+    /* margin-left: 1000px; */
+}
+.menu {
+    float: right;
+    text-align: right;
+}
+.empty {
+    height: 400px;
+}
+.MainBar {
+    color: brown;
+    background-color: aquamarine;
+}
+.getCategories {
+    text-align: center;
+}
+.Register {
+    text-align: center;
+}
+.Login {
+    text-align: center;
+}
+.getCategories {
+    text-align: center;
+}
+.pagination {
+    padding-top: 10px;
+}
+.footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    margin: 0 auto;
+}
