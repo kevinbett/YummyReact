@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CategoryGet Component renders without crashing 1`] = `
+<div>
+  <div>
+    <Grid>
+      <_class
+        options={Object {}}
+      />
+      <GridColumn
+        textAlign="right"
+        width={7}
+      >
+        <h2
+          style={
+            Object {
+              "marginTop": 20,
+            }
+          }
+        >
+          <b>
+            Categories
+          </b>
+        </h2>
+      </GridColumn>
+      <GridColumn
+        floated="right"
+        width={5}
+      >
+        <TextField
+          class="form-control"
+          disabled={false}
+          floatingLabelFixed={false}
+          fullWidth={false}
+          multiLine={false}
+          name="keyword_search"
+          onChange={[Function]}
+          placeholder="Search for a category..."
+          rows={1}
+          style={
+            Object {
+              "marginTop": 16,
+            }
+          }
+          type="text"
+          underlineShow={true}
+        />
+      </GridColumn>
+      <GridColumn
+        width={12}
+      />
+    </Grid>
+    <Dialog
+      actions={
+        Array [
+          <FlatButton
+            disabled={false}
+            fullWidth={false}
+            keyboardFocused={true}
+            label="submit"
+            labelPosition="after"
+            labelStyle={Object {}}
+            onClick={[Function]}
+            onKeyboardFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onTouchStart={[Function]}
+            primary={true}
+            secondary={false}
+          />,
+          <FlatButton
+            disabled={false}
+            fullWidth={false}
+            keyboardFocused={false}
+            label="close"
+            labelPosition="after"
+            labelStyle={Object {}}
+            onClick={[Function]}
+            onKeyboardFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onTouchStart={[Function]}
+            primary={false}
+            secondary={false}
+          />,
+        ]
+      }
+      autoDetectWindowHeight={true}
+      autoScrollBodyContent={false}
+      modal={false}
+      onRequestClose={[Function]}
+      open={false}
+      repositionOnUpdate={true}
+      title="Edit  undefined"
+    >
+      <form>
+        <TextField
+          disabled={false}
+          errorText=""
+          floatingLabelFixed={false}
+          fullWidth={false}
+          multiLine={false}
+          onChange={[Function]}
+          rows={1}
+          type="text"
+          underlineShow={true}
+        />
+      </form>
+    </Dialog>
+    <div
+      style={
+        Object {
+          "justifyContent": "space-around",
+          "marginLeft": 40,
+        }
+      }
+    >
+      <Grid
+        columns={3}
+        divided={true}
+      >
+        <GridRow />
+      </Grid>
+    </div>
+  </div>
+  <div>
+    <Pagination
+      onChange={[Function]}
+      styleButton={null}
+      styleFirstPageLink={null}
+      styleLastPageLink={null}
+      stylePrimary={null}
+      styleRoot={
+        Object {
+          "marginTop": 30,
+        }
+      }
+    />
+  </div>
+</div>
+`;

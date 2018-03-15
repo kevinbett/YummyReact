@@ -1,0 +1,177 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DashboardComponent renders without crashing 1`] = `
+<MuiThemeProvider>
+  <div
+    className="landing"
+  >
+    <AppBar
+      iconElementRight={
+        <ToolbarGroup
+          firstChild={false}
+          lastChild={false}
+        >
+          <FlatButton
+            disabled={false}
+            fullWidth={false}
+            label={null}
+            labelPosition="after"
+            labelStyle={Object {}}
+            onClick={[Function]}
+            onKeyboardFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onTouchStart={[Function]}
+            primary={false}
+            secondary={false}
+            style={
+              Object {
+                "backgroundColor": "transparent",
+                "color": "white",
+              }
+            }
+          />
+          <IconMenu
+            anchorOrigin={
+              Object {
+                "horizontal": "left",
+                "vertical": "top",
+              }
+            }
+            animated={true}
+            clickCloseDelay={200}
+            iconButtonElement={
+              <IconButton
+                disableTouchRipple={false}
+                disabled={false}
+                iconStyle={Object {}}
+                tooltipPosition="bottom-center"
+                touch={false}
+              >
+                <NavigationMoreVert />
+              </IconButton>
+            }
+            multiple={false}
+            onClick={[Function]}
+            onItemClick={[Function]}
+            onKeyboardFocus={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onRequestChange={[Function]}
+            open={null}
+            targetOrigin={
+              Object {
+                "horizontal": "left",
+                "vertical": "bottom",
+              }
+            }
+            useLayerForClickAway={false}
+          >
+            <MenuItem
+              anchorOrigin={
+                Object {
+                  "horizontal": "right",
+                  "vertical": "top",
+                }
+              }
+              checked={false}
+              desktop={false}
+              disabled={false}
+              focusState="none"
+              insetChildren={false}
+              primaryText="Change password"
+              targetOrigin={
+                Object {
+                  "horizontal": "left",
+                  "vertical": "top",
+                }
+              }
+            />
+            <MenuItem
+              anchorOrigin={
+                Object {
+                  "horizontal": "right",
+                  "vertical": "top",
+                }
+              }
+              checked={false}
+              desktop={false}
+              disabled={false}
+              focusState="none"
+              insetChildren={false}
+              onClick={[Function]}
+              primaryText="Sign out"
+              targetOrigin={
+                Object {
+                  "horizontal": "left",
+                  "vertical": "top",
+                }
+              }
+            />
+          </IconMenu>
+        </ToolbarGroup>
+      }
+      onLeftIconButtonClick={[Function]}
+      showMenuIconButton={false}
+      style={
+        Object {
+          "backgroundColor": "#f57c00",
+        }
+      }
+      title=""
+      zDepth={1}
+    >
+      <_class
+        options={
+          Object {
+            "zIndex": 5000,
+          }
+        }
+      />
+    </AppBar>
+    <LeftDrawer />
+    <Paper
+      circle={false}
+      rounded={true}
+      style={
+        Object {
+          "backgroundColor": "transparent",
+          "display": "inline-block",
+          "height": "85%",
+          "marginLeft": "19%",
+          "textAlign": "center",
+          "width": "80%",
+        }
+      }
+      transitionEnabled={true}
+      zDepth={5}
+    >
+      <div>
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/dashboard/"
+        />
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/dashboard/categories"
+        />
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/dashboard/category/:id/recipes/"
+        />
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/dashboard/category"
+        />
+      </div>
+    </Paper>
+    <Navigation />
+  </div>
+</MuiThemeProvider>
+`;

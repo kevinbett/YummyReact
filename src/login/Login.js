@@ -77,7 +77,7 @@ class Login extends Component {
                                 onChange={(event, newValue) =>
                                     this.setState({ password: newValue })} />
                             <br />
-                            <RaisedButton label="Submit" secondary={true}
+                            <RaisedButton type='submit' label="Submit" secondary={true}
                                 style={style} onClick={(event) => this.handleClick(event)} />
                         </form>
                         </div>
@@ -91,6 +91,7 @@ class Login extends Component {
         );
     }
     handleClick(event) {
+        event.preventDefault();
         var apiBaseUrl = "http://localhost:5000/api/auth/";
         var payload = {
             "username": this.state.username,

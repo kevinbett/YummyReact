@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navigation Component renders without crashing 1`] = `
+<Paper
+  circle={false}
+  className="footer"
+  rounded={true}
+  transitionEnabled={true}
+  zDepth={1}
+>
+  <BottomNavigation
+    selectedIndex={0}
+  >
+    <BottomNavigationItem
+      icon={
+        <FontIcon
+          className="muidocs-icon-action-home"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        />
+      }
+      label="Home"
+      onClick={[Function]}
+    />
+    <BottomNavigationItem
+      icon={
+        <FontIcon
+          className="material-icons"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        />
+      }
+      label="Heroku"
+      onClick={[Function]}
+    />
+    <BottomNavigationItem
+      icon={
+        <FontIcon
+          className="material-icons"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        />
+      }
+      label="Github"
+      onClick={[Function]}
+    />
+  </BottomNavigation>
+</Paper>
+`;

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
 import AppBar from 'material-ui/AppBar';
@@ -8,6 +7,7 @@ import { ToolbarGroup} from 'material-ui/Toolbar';
 import { orange700} from 'material-ui/styles/colors';
 import '../css/home.css';
 import Navigation from './home';
+import Welcome from '../homepage/welcome';
 import LeftDrawer from './drawer';
 import CategoryGet from '../categories/GetCategories';
 import CategoryPost from '../categories/categories';
@@ -32,16 +32,14 @@ const paperStyle = {
 const buttonStyle = {
     backgroundColor: 'transparent',
     color: 'white'
-  };
-const headers = {headers: {"x-access-token": window.localStorage.getItem("token")},Content_Type: "application/json"};    
+  };  
 
 class Dashboard extends Component {
     constructor(props) {
         super(props);      
         this.state = {open: false, username:'', error:'', message:''}
         this.handleLogin = this.handleLogin.bind(this);
-        this.handleLogout = this.handleLogout.bind(this); 
-        this.Logout = this.Logout.bind(this);           
+        this.handleLogout = this.handleLogout.bind(this);          
     }
     handleLogin(event){
         event.preventDefault();
@@ -49,23 +47,8 @@ class Dashboard extends Component {
     }
     handleLogout(event) {
         event.preventDefault();
-        this.props.history.push('/');
-        window.localStorage.token = '';
-    }
-    Logout() {
-        var apiBaseUrl = "http://localhost:5000/api/auth/logout/";
-        axios.delete(apiBaseUrl,headers)
-            .then(function (response) {
-                console.log(response.data.message)
-                this.setState({message:response.data.message, error: ''})
-                window.location.reload();
-    
-            })
-            .catch(error => {
-                this.setState({
-                    error: error.response.data, mess: ''
-                })
-            })
+        window.location.assign('/');
+        localStorage.clear();
     }
     
     handleToggle = () => this.setState({open: !this.state.open});
@@ -84,6 +67,7 @@ class Dashboard extends Component {
                         <LeftDrawer/>
                     <Paper style={paperStyle} zDepth={5}>                        
                         <div>
+                            <Route exact path="/dashboard/" component={Welcome} />                                                                                  
                             <Route exact path="/dashboard/categories" component={CategoryGet} />
                             <Route exact path="/dashboard/category/:id/recipes/" component={Recipes} />                        
                             <Route exact path="/dashboard/category" component={CategoryPost} />                         
@@ -98,14 +82,14 @@ class Dashboard extends Component {
 const buttons = (
     
     <ToolbarGroup>
-      <FlatButton label={window.localStorage.getItem('username')} onClick={(event) => this.Logout()} style={buttonStyle}/>
+      <FlatButton label={window.localStorage.getItem('username')} onClick={(event) => this.handleLogout} style={buttonStyle}/>
       <IconMenu
         iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
         anchorOrigin={{horizontal: 'left', vertical: 'top'}}
         targetOrigin={{horizontal: 'left', vertical: 'bottom'}}
         >
         <MenuItem primaryText="Change password" />
-        <MenuItem primaryText="Sign out" />
+        <MenuItem primaryText="Sign out" onClick={(event) => this.handleLogout} />
     </IconMenu>
     </ToolbarGroup> 
   );

@@ -111,8 +111,9 @@ class CategoriesGet extends Component {
             }                      
         })
         .catch(error => {
-            console.log(error);
-            // notify.show(error.response.data.error, 'error', 4000)
+            if (error.response.data.message === 'Token is Invalid'){
+                window.location.assign('/login')
+            };
         })
         apiBaseUrl = "http://localhost:5000/api/categories/";
     }

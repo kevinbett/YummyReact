@@ -2,10 +2,7 @@ import React, {Component} from 'react';
 import FontIcon from 'material-ui/FontIcon';
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
 import Paper from 'material-ui/Paper';
-import '../css/home.css'
-import {
-  Link
-} from "react-router-dom";
+import '../css/home.css';
 
 const recentsIcon = <FontIcon className="muidocs-icon-action-home"></FontIcon>;
 const favoritesIcon = <FontIcon className="material-icons"></FontIcon>;
@@ -25,17 +22,17 @@ class Navigation extends Component {
           <BottomNavigationItem
             label="Home"
             icon={recentsIcon}
-            onClick={() => this.select(1)}
+            onClick={() => this.select(0)}
           />
           <BottomNavigationItem
             label="Heroku"
             icon={favoritesIcon}
-            onClick={() => <Link to='/login' ></Link>}
+            onClick={() => this.select(1)}
           />
           <BottomNavigationItem
             label="Github"
             icon={nearbyIcon}
-            onClick={() => this.select(3)}
+            onClick={() => this.select(2)}
           />
         </BottomNavigation>
       </Paper>

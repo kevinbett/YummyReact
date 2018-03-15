@@ -84,7 +84,9 @@ class Recipes extends Component {
 
             })
             .catch(error => {  
-                console.log(error.response);
+                if (error.response.data.message === 'Token is Invalid'){
+                    window.location.assign('/login')
+                }
             })
             this.getRecipes()
     }
@@ -136,8 +138,11 @@ class Recipes extends Component {
             self.setState({recipes: response.data.results, pages: response.data['pages']})                         
         })
         .catch(error => {
-            console.log(error.response);            
+            console.log(error.response.data.message);            
             if (error.response){
+                if (error.response.data.message === 'Token is Invalid'){
+                    window.location.assign('/login')
+                };
                 self.setState({
                     error: error.response.data.error
                 })

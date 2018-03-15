@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home Component renders without crashing 1`] = `
+<MuiThemeProvider>
+  <div
+    className="landing"
+  >
+    <div>
+      <AppBar
+        iconElementRight={
+          <ToolbarGroup
+            firstChild={false}
+            lastChild={false}
+          >
+            <FlatButton
+              disabled={false}
+              fullWidth={false}
+              label="Sign In"
+              labelPosition="after"
+              labelStyle={Object {}}
+              onKeyboardFocus={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onTouchStart={[Function]}
+              primary={false}
+              secondary={false}
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "color": "white",
+                }
+              }
+            />
+            <FlatButton
+              disabled={false}
+              fullWidth={false}
+              label="Sign Up"
+              labelPosition="after"
+              labelStyle={Object {}}
+              onKeyboardFocus={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onTouchStart={[Function]}
+              primary={false}
+              secondary={false}
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "color": "white",
+                }
+              }
+            />
+          </ToolbarGroup>
+        }
+        onLeftIconButtonClick={[Function]}
+        showMenuIconButton={false}
+        style={
+          Object {
+            "backgroundColor": "#f57c00",
+          }
+        }
+        title="Yummy Recipes"
+        zDepth={2}
+      >
+        <_class
+          options={Object {}}
+        />
+      </AppBar>
+    </div>
+    <Paper
+      circle={false}
+      rounded={true}
+      style={
+        Object {
+          "backgroundColor": "transparent",
+          "display": "inline-block",
+          "height": "50%",
+          "marginLeft": "30%",
+          "marginTop": "10%",
+          "textAlign": "center",
+          "width": "40%",
+        }
+      }
+      transitionEnabled={true}
+      zDepth={5}
+    >
+      <div>
+        <Toolbar
+          noGutter={false}
+          style={
+            Object {
+              "justifyContent": "center",
+            }
+          }
+        >
+          <ToolbarTitle
+            text="Welcome to Yummy Recipes."
+          />
+        </Toolbar>
+        <Login />
+      </div>
+    </Paper>
+    <Navigation />
+  </div>
+</MuiThemeProvider>
+`;

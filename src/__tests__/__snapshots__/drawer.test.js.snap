@@ -1,0 +1,167 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LeftDrawer Component renders without crashing 1`] = `
+<BrowserRouter>
+  <div>
+    <Dialog
+      actions={
+        Array [
+          <FlatButton
+            disabled={false}
+            fullWidth={false}
+            keyboardFocused={true}
+            label="submit"
+            labelPosition="after"
+            labelStyle={Object {}}
+            onClick={[Function]}
+            onKeyboardFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onTouchStart={[Function]}
+            primary={true}
+            secondary={false}
+          />,
+          <FlatButton
+            disabled={false}
+            fullWidth={false}
+            keyboardFocused={false}
+            label="close"
+            labelPosition="after"
+            labelStyle={Object {}}
+            onClick={[Function]}
+            onKeyboardFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onTouchStart={[Function]}
+            primary={false}
+            secondary={false}
+          />,
+        ]
+      }
+      autoDetectWindowHeight={true}
+      autoScrollBodyContent={false}
+      modal={false}
+      onRequestClose={[Function]}
+      open={false}
+      repositionOnUpdate={true}
+      title="Add a new category"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <TextField
+          disabled={false}
+          errorText=""
+          floatingLabelFixed={false}
+          floatingLabelText="Category name"
+          fullWidth={false}
+          hintText="Enter category name"
+          multiLine={false}
+          onChange={[Function]}
+          required={true}
+          rows={1}
+          type="text"
+          underlineShow={true}
+        />
+      </form>
+    </Dialog>
+    <Drawer
+      containerStyle={
+        Object {
+          "overflowX": "hidden",
+        }
+      }
+      disableSwipeToOpen={false}
+      docked={true}
+      open={null}
+      openSecondary={false}
+      swipeAreaWidth={30}
+      width={null}
+      zDepth={0}
+    >
+      <AppBar
+        showMenuIconButton={false}
+        style={
+          Object {
+            "backgroundColor": "#f57c00",
+          }
+        }
+        title="Yummy Recipes"
+        zDepth={1}
+      />
+      <List>
+        <ListItem
+          autoGenerateNestedIndicator={true}
+          containerElement="span"
+          disableKeyboardFocus={false}
+          disabled={false}
+          initiallyOpen={true}
+          insetChildren={false}
+          nestedItems={
+            Array [
+              <ListItem
+                autoGenerateNestedIndicator={true}
+                containerElement="span"
+                disableKeyboardFocus={false}
+                disabled={false}
+                initiallyOpen={false}
+                insetChildren={false}
+                leftIcon={<ImageAddToPhotos />}
+                nestedItems={Array []}
+                nestedLevel={0}
+                onClick={[Function]}
+                onKeyboardFocus={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+                onNestedListToggle={[Function]}
+                onTouchEnd={[Function]}
+                onTouchStart={[Function]}
+                open={null}
+                primaryText="Add"
+                primaryTogglesNestedList={false}
+                secondaryTextLines={1}
+              />,
+              <ListItem
+                autoGenerateNestedIndicator={true}
+                containerElement="span"
+                disableKeyboardFocus={false}
+                disabled={false}
+                initiallyOpen={false}
+                insetChildren={false}
+                leftIcon={<ImageRemoveRedEye />}
+                nestedItems={Array []}
+                nestedLevel={0}
+                onClick={[Function]}
+                onKeyboardFocus={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+                onNestedListToggle={[Function]}
+                onTouchEnd={[Function]}
+                onTouchStart={[Function]}
+                open={null}
+                primaryText="View All"
+                primaryTogglesNestedList={false}
+                secondaryTextLines={1}
+              />,
+            ]
+          }
+          nestedLevel={0}
+          onKeyboardFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onNestedListToggle={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          open={null}
+          primaryText="Categories"
+          primaryTogglesNestedList={true}
+          secondaryTextLines={1}
+        />
+      </List>
+      <Divider
+        inset={false}
+      />
+    </Drawer>
+  </div>
+</BrowserRouter>
+`;

@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CategoryPost Component renders without crashing 1`] = `
+<div>
+  <form
+    onSubmit={[Function]}
+    style={
+      Object {
+        "textAlign": "center",
+      }
+    }
+  >
+    <TextField
+      disabled={false}
+      floatingLabelFixed={false}
+      floatingLabelText="Category name"
+      fullWidth={false}
+      hintText="Enter category name"
+      multiLine={false}
+      onChange={[Function]}
+      rows={1}
+      type="text"
+      underlineShow={true}
+    />
+    <br />
+    <FlatButton
+      disabled={false}
+      fullWidth={false}
+      label="Submit"
+      labelPosition="after"
+      labelStyle={Object {}}
+      onClick={[Function]}
+      onKeyboardFocus={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onTouchStart={[Function]}
+      primary={false}
+      secondary={true}
+    />
+  </form>
+</div>
+`;
