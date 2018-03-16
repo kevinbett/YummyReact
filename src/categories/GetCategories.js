@@ -67,8 +67,9 @@ class CategoriesGet extends Component {
             self.setState({
                 message: response.data.message
             })           
-            notify.show(this.state.message, 'success', 6000);            
-
+            notify.show(this.state.message, 'success', 6000);           
+            this.getCategories();
+            
         })
         this.getCategories()  
 }
@@ -103,7 +104,7 @@ class CategoriesGet extends Component {
         const self = this;
         axios.get(apiBaseUrl, headers)
         .then(response => {
-            console.log(response);
+            console.log(this.state.current_page);
             if (response.data.error) {
                 notify.show(response.data.error, "error", 4000)
             }

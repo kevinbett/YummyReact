@@ -37,7 +37,7 @@ export default class CategoryPost extends React.Component {
       })
       .catch(error => {
         this.setState({error: error.response.data.message})
-      })
+      })    
   }
 
   render() {

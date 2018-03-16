@@ -23,6 +23,7 @@ class Register extends Component {
                 <MuiThemeProvider>
                     <div>
                         <div>
+                        <form>
                             <TextField
                                 hintText="Enter your Username"
                                 floatingLabelText="Username"
@@ -42,10 +43,9 @@ class Register extends Component {
                                 onChange={(event, newValue) =>
                                     this.setState({ password: newValue })} />
                             <br />
-                            <div>
-                                <RaisedButton label="Submit" secondary={true}
-                                    style={style} onClick={(event) => this.handleClick(event)} />
-                            </div>
+                            <RaisedButton label="Submit" secondary={true}
+                                style={style} onClick={(event) => this.handleClick(event)} />
+                            </form>
                         </div>
                     </div>
                 </MuiThemeProvider>
@@ -61,8 +61,8 @@ class Register extends Component {
         }
         axios.post(apiBaseUrl + 'register/', payload)
             .then(response => {
-                window.location.assign(`/login`) 
-                notify.show(response.data.message, 'success', 4000)               
+                window.location.assign(`/login`)
+                notify.show(response.data.message, 'success', 4000)                               
             })
             .catch(error => {
                 if (error.response.data.message.error) {
@@ -76,6 +76,7 @@ class Register extends Component {
 }
 
 const style = {
-    marginRight: 20,
+    marginRight: 60,
+    float: 'center'
 };
 export default Register;
