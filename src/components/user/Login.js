@@ -6,7 +6,7 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
 import {notify} from 'react-notify-toast';
 import axios from 'axios';
-import Register from './register';
+import Register from './Register';
 
 const styles = {
     headline: {
@@ -101,6 +101,7 @@ class Login extends Component {
             .then(response => {
                 window.localStorage.setItem("token", response.data.token)
                 window.localStorage.setItem("username", response.data.username)
+                window.localStorage.setItem("logged_in", true)
                 if (response.status === 200) {
                     window.location.assign('/dashboard/categories')
                 }

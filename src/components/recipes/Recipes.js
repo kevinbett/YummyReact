@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Card} from 'semantic-ui-react';
 import axios from 'axios';
-import '../css/home.css'
+import '../../static/css/home.css';
 import 'semantic-ui-css/semantic.min.css';
 import Pagination from 'material-ui-pagination';
 import {notify} from 'react-notify-toast';
@@ -60,8 +60,7 @@ class Recipes extends Component {
     };
     handleChange = event => {
         const {name, value} = event.target;
-        this.setState({[name]: value});
-        // this.setState({ title: event.target.value, body: event.target.value });       
+        this.setState({[name]: value});       
       }
     editRecipe(id) {
         var payload = {
@@ -268,6 +267,7 @@ class Recipes extends Component {
                     </Grid.Column>
                     <Grid.Column width={5}>                        
                         <h2 style={{marginTop: 20}}><b>Recipes</b></h2>
+                        <label> {window.localStorage.getItem('category_name')} </label>
                     </Grid.Column>
                     <Grid.Column floated='right' width={5}>
                         <TextField type="text"

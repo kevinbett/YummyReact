@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Card} from 'semantic-ui-react';
 import axios from 'axios';
-import '../css/home.css'
+import '../../static/css/home.css';
 import 'semantic-ui-css/semantic.min.css';
 import Pagination from 'material-ui-pagination';
 import Notifications, {notify} from 'react-notify-toast';
@@ -50,7 +50,7 @@ class CategoriesGet extends Component {
     this.setState({open: true, editing:{id:id, name:name}});
     };
 
-    handleViewrecipes(id){
+    handleViewrecipes = (id) => {
         window.location.assign('/dashboard/category/' + id + '/recipes/');
     };
     handleClose = () => {
@@ -104,12 +104,14 @@ class CategoriesGet extends Component {
         const self = this;
         axios.get(apiBaseUrl, headers)
         .then(response => {
-            console.log(this.state.current_page);
             if (response.data.error) {
                 notify.show(response.data.error, "error", 4000)
             }
             else {
-                self.setState({categories: response.data.results, pages: response.data['pages']})  
+                self.setState({categories: response.data.results, pages: response.data['pages']})
+                this.state.categories.map(function(category) {
+                    window.localStorage.setItem('category_name', category.name);
+                })
             }                      
         })
         .catch(error => {
@@ -187,7 +189,7 @@ class CategoriesGet extends Component {
                 <div style={styles.root}>
                 <Grid columns={3} divided>
                 <Grid.Row>
-                        {data.map((category) =>( 
+                        {data.map((category) =>(
                         <Grid.Column>
                         <Card raised={true} style={{'marginBottom': 10}}>
                             <Card.Content>
@@ -201,7 +203,7 @@ class CategoriesGet extends Component {
                             <Card.Content extra>
                             <div className='ui three buttons'>
                                 <Button basic color='green' onClick={(event) => this.handleOpen(category.id,category.name)}>Edit</Button>
-                                <Button basic color='blue'><Link to={`/dashboard/category/${category.id}/recipes/`}>Recipes</Link></Button>                            
+                                <Button basic color='blue' onClick={(event) => this.handleViewrecipes(category.id)}>Recipes</Button>                            
                                 <Button basic color='red' onClick={(event) => this.deleteCategory(category.id)}>Delete</Button>
                                 </div>
                             </Card.Content>

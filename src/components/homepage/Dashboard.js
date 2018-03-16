@@ -5,18 +5,18 @@ import AppBar from 'material-ui/AppBar';
 import Paper from 'material-ui/Paper';
 import { ToolbarGroup} from 'material-ui/Toolbar';
 import { orange700} from 'material-ui/styles/colors';
-import '../css/home.css';
-import Navigation from './home';
-import Welcome from '../homepage/welcome';
-import LeftDrawer from './drawer';
-import CategoryGet from '../categories/GetCategories';
-import CategoryPost from '../categories/categories';
+import '../../static/css/home.css';
+import Navigation from '../homepage/Home';
+import Welcome from '../homepage/Welcome';
+import LeftDrawer from '../homepage/Drawer';
+import CategoryGet from '../categories/Categories';
+import CategoryPost from '../categories/AddCategories';
 import {Route} from "react-router-dom";
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import Recipes from '../recipes/recipes';
+import Recipes from '../recipes/Recipes';
 import Notifications from 'react-notify-toast';
 import axios from 'axios';
 import {notify} from 'react-notify-toast';
@@ -35,7 +35,7 @@ const buttonStyle = {
     backgroundColor: 'transparent',
     color: 'white'
   };  
-
+const logged_in = window.localStorage.getItem('logged_in');
 
 class Dashboard extends Component {
     constructor(props) {
@@ -57,6 +57,9 @@ class Dashboard extends Component {
     handleToggle = () => this.setState({open: !this.state.open});
 
     render() {
+        if (!logged_in) {
+            window.location.assign('/login');
+        };
         return (
             <MuiThemeProvider>
                 <div className="landing">

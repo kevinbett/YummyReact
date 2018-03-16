@@ -3,7 +3,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
-import '../css/home.css'
+import '../../static/css/home.css';
 import {notify} from 'react-notify-toast';
 
 

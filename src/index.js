@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { Route, Switch} from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Dashboard from './homepage/dashboard';
-import Home from './homepage/homepage'
+import Dashboard from './components/homepage/Dashboard';
+import Home from './components/homepage/Homepage';
 import registerServiceWorker from './registerServiceWorker';
 import 'semantic-ui-css/semantic.min.css';
 

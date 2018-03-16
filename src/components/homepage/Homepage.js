@@ -5,9 +5,9 @@ import AppBar from 'material-ui/AppBar';
 import Paper from 'material-ui/Paper';
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
 import {orange700} from 'material-ui/styles/colors';
-import '../css/home.css';
-import Navigation from './home';
-import Login from '../login/Login';
+import '../../static/css/home.css';
+import Navigation from '../homepage/Home';
+import Login from '../user/Login';
 import Notifications from 'react-notify-toast';
 
 const paperStyle = {
