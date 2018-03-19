@@ -11,7 +11,7 @@ import {orange700} from 'material-ui/styles/colors';
 import Dialog from 'material-ui/Dialog';
 import {BrowserRouter} from "react-router-dom";
 import {notify} from 'react-notify-toast';
-import axios from 'axios';
+import axiosInstance from '../../Axios';
 
 class LeftDrawer extends React.Component {
 
@@ -39,22 +39,20 @@ class LeftDrawer extends React.Component {
     handleChange = event => {
       this.setState({ name: event.target.value });       
     }
-    handleSubmit = event => {
+    handleSubmit(event){
       event.preventDefault();
-  
-      const category = {
+      var category = {
         name: this.state.name        
       };
-      const headers = {headers: {"x-access-token": window.localStorage.getItem("token")},Content_Type: "application/json"};    
+      // const headers = {headers: {"x-access-token": window.localStorage.getItem("token")},Content_Type: "application/json"};    
   
-      axios.post('http://127.0.0.1:5000/api/categories/',category, headers)
+      axiosInstance.post('/categories/',category)
         .then(res => {
-          this.setState({message:res.data.message})
           window.location.assign('/dashboard/categories');
+          notify.show(res.data.message, 'success', 4000);          
         })
         .catch(error => {
-          this.setState({error: error.response.data.message})
-          notify.show(this.state.error, 'error', 6000);
+          notify.show(error.response.data.message, 'error', 6000);
         })
     }
   
@@ -64,7 +62,7 @@ class LeftDrawer extends React.Component {
           label="submit"
           primary={true}
           keyboardFocused={true}
-          onClick={this.handleSubmit}
+          onClick={(event) => this.handleSubmit(event)}
         />,
         <FlatButton
           label="close"
@@ -83,7 +81,7 @@ class LeftDrawer extends React.Component {
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-        <form onSubmit={this.handleSubmit}>
+        <form>
         <TextField
           hintText="Enter category name"
           floatingLabelText="Category name"
@@ -100,13 +98,13 @@ class LeftDrawer extends React.Component {
                   <ListItem
                   key={1}
                   onClick={this.handleOpen}
-                  primaryText="Add"
+                  primaryText="Add category"
                   leftIcon={<Add />}
                 />,
                 <ListItem
                   key={1}
                   onClick={this.handleViewcategories}
-                  primaryText="View All"
+                  primaryText="View all categories"
                   leftIcon={<RemoveRedEye />}
                 />
                 ]}/>

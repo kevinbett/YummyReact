@@ -16,6 +16,7 @@ ReactDOM.render(
           <Route exact path="/signup" component={Home} />
           <Route exact path="/login" component={Home} />
           <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/dashboard/change-password" component={Dashboard} />          
           <Route exact path="/dashboard/categories" component={Dashboard} />
           <Route exact path="/dashboard/category" component={Dashboard} />
           <Route exact path="/dashboard/category/:id/recipes/" component={Dashboard} />                                  

@@ -10,6 +10,7 @@ import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import { Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import axiosInstance from '../../Axios';
 
 
 const styles = {
@@ -23,8 +24,8 @@ const styles = {
       overflowY: 'auto',
     },
   };
-const headers = {headers: {"x-access-token": window.localStorage.getItem("token")},Content_Type: "application/json"};    
-let apiBaseUrl = "http://localhost:5000/api/categories/";
+// const headers = {headers: {"x-access-token": window.localStorage.getItem("token")},Content_Type: "application/json"};    
+let apiBaseUrl = "/categories/";
 
 class CategoriesGet extends Component {
     constructor(props) {
@@ -62,7 +63,7 @@ class CategoriesGet extends Component {
     
     deleteCategory(id) {
     const self = this;
-    axios.delete(apiBaseUrl + id.toString(),headers)
+    axiosInstance.delete(apiBaseUrl + id.toString())
         .then(response => {
             self.setState({
                 message: response.data.message
@@ -77,14 +78,10 @@ class CategoriesGet extends Component {
         var payload = {
             name: this.state.name
         }
-        axios({
+        axiosInstance({
             method: 'put',
             url: apiBaseUrl + id.toString(),
-            data: payload,
-            headers: {
-                "Content-Type": "application/json",
-                "x-access-token": window.localStorage.getItem('token')
-            }
+            data: payload
         })
             .then(function (response) {
                 notify.show(response.data.message, 'success', 6000);            
@@ -102,7 +99,7 @@ class CategoriesGet extends Component {
             apiBaseUrl = `${apiBaseUrl}?page=${page}`;
         };
         const self = this;
-        axios.get(apiBaseUrl, headers)
+        axiosInstance.get(apiBaseUrl)
         .then(response => {
             if (response.data.error) {
                 notify.show(response.data.error, "error", 4000)
@@ -119,7 +116,7 @@ class CategoriesGet extends Component {
                 window.location.assign('/login')
             };
         })
-        apiBaseUrl = "http://localhost:5000/api/categories/";
+        apiBaseUrl = "/categories/";
     }
     searchHandler = (event) => {
         event.preventDefault()
@@ -133,9 +130,14 @@ class CategoriesGet extends Component {
     }
     render() {
         const data= this.state.categories;
+        const logged_in = window.localStorage.getItem('logged_in');
+        
+        if (!logged_in) {
+            window.location.assign('/login');
+        };
         const actions = [
             <FlatButton
-              label="submit"
+              label="Submit"
               primary={true}
               keyboardFocused={true}
               onClick={(event) => {
@@ -144,7 +146,7 @@ class CategoriesGet extends Component {
                   }}
             />,
             <FlatButton
-              label="close"
+              label="Close"
               primary={false}
               keyboardFocused={false}
               onClick={this.handleClose}

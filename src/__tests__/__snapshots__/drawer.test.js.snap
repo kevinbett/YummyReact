@@ -46,9 +46,7 @@ exports[`LeftDrawer Component renders without crashing 1`] = `
       repositionOnUpdate={true}
       title="Add a new category"
     >
-      <form
-        onSubmit={[Function]}
-      >
+      <form>
         <TextField
           disabled={false}
           errorText=""
@@ -117,7 +115,7 @@ exports[`LeftDrawer Component renders without crashing 1`] = `
                 onTouchEnd={[Function]}
                 onTouchStart={[Function]}
                 open={null}
-                primaryText="Add"
+                primaryText="Add category"
                 primaryTogglesNestedList={false}
                 secondaryTextLines={1}
               />,
@@ -139,7 +137,7 @@ exports[`LeftDrawer Component renders without crashing 1`] = `
                 onTouchEnd={[Function]}
                 onTouchStart={[Function]}
                 open={null}
-                primaryText="View All"
+                primaryText="View all categories"
                 primaryTogglesNestedList={false}
                 secondaryTextLines={1}
               />,

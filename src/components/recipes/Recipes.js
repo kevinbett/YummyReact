@@ -11,6 +11,7 @@ import TextField from 'material-ui/TextField';
 import { Grid } from 'semantic-ui-react';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import axiosInstance from '../../Axios';
 
 
 const styles = {
@@ -24,7 +25,7 @@ const styles = {
       overflowY: 'auto',
     },
   };
-const headers = {headers: {"x-access-token": window.localStorage.getItem("token")},Content_Type: "application/json"}; 
+// const headers = {headers: {"x-access-token": window.localStorage.getItem("token")},Content_Type: "application/json"};
 
 class Recipes extends Component {
     constructor(props) {
@@ -56,19 +57,19 @@ class Recipes extends Component {
         });
       };
     handleClose = () => {
-        this.setState({open: false});
+        this.setState({open: false, title_error:'', body_error:'', error:'', editing: ''});
     };
     handleChange = event => {
         const {name, value} = event.target;
-        this.setState({[name]: value});       
+        this.setState({[name]: value, title_error:'', body_error:''});       
       }
     editRecipe(id) {
         var payload = {
             title: this.state.title,
             body: this.state.body
         }
-        let apiBaseUrl = `http://localhost:5000/api/recipes/`;        
-        axios({
+        let apiBaseUrl = `/recipes/`;        
+        axiosInstance({
             method: 'put',
             url: apiBaseUrl + id.toString(),
             data: payload,
@@ -91,48 +92,56 @@ class Recipes extends Component {
     }
     deleteRecipe(id) {
         const self = this;
-        let apiBaseUrl = `http://localhost:5000/api/recipes/`;
-        axios.delete(apiBaseUrl + id.toString() ,headers)
-            .then(response => {
-                self.setState({
-                    message: response.data.Message
-                })           
-                notify.show(this.state.message, 'success', 6000);            
+        let apiBaseUrl = `/recipes/`;
+        axiosInstance.delete(apiBaseUrl + id.toString())
+            .then(response => {         
+                notify.show(response.data.Message, 'success', 6000); 
+                this.getRecipes();                        
             })
             this.getRecipes()
     }
 
     handleSubmit = event => {
         let category_id =  this.props.match.params.id 
-        let apiBaseUrl = `http://localhost:5000/api/category/${category_id}/recipes/`;
+        let apiBaseUrl = `/category/${category_id}/recipes/`;
 
         const recipe = {
             title: this.state.title,
             body: this.state.body,      
-        };
-        const headers = {headers: {"x-access-token": window.localStorage.getItem("token")},Content_Type: "application/json"};    
+        };   
 
-        axios.post(apiBaseUrl ,recipe, headers)
+        axiosInstance.post(apiBaseUrl ,recipe)
             .then(res => {
                 this.getRecipes()
                 notify.show(res.data, 'success', 4000)
             })
             .catch(error => {
-            notify.show(error.response.data.message, 'error', 6000);
-            })
+                if (error.response.data.message.title){
+                    this.setState({title_error: error.response.data.message.title[0]})
+                    //  notify.show(error.response.data.message.title[0]);
+                } else if (error.response.data.message.body){
+                    this.setState({body_error: error.response.data.message.body[0]})                    
+                    // notify.show(error.response.data.message.body[0], 'error', 4000);
+                } else if (error.response.data.message){
+                    notify.show(error.response.data.message.error, 'error', 4000);
+                } else {
+                    notify.show("Error while creating recipe", 'error', 4000);
+                }
+            }) 
+            this.setState({name: ''});                      
     }
     
     
     getRecipes(value, page) {
         let category_id =  this.props.match.params.id 
-        let apiBaseUrl = `http://localhost:5000/api/category/${category_id}/recipes/`;
+        let apiBaseUrl = `/category/${category_id}/recipes/`;
         if(value){
             apiBaseUrl = `${apiBaseUrl}?q=${value}`;
         }else if(page){
             apiBaseUrl = `${apiBaseUrl}?page=${page}`;
         };
         const self = this;
-        axios.get(apiBaseUrl, headers)
+        axiosInstance.get(apiBaseUrl)
         .then(response => {
             self.setState({recipes: response.data.results, pages: response.data['pages']})                         
         })
@@ -149,9 +158,9 @@ class Recipes extends Component {
             } else if(error.request){
                 console.log(error.request);
                 notify.show("Server error", 'error', 4000)
-            }
+            }            
         })
-        apiBaseUrl = `http://localhost:5000/api/category/${category_id}/recipes/`;
+        apiBaseUrl = `/category/${category_id}/recipes/`;
     }
     searchHandler = (event) => {
         event.preventDefault()
@@ -175,7 +184,7 @@ class Recipes extends Component {
               keyboardFocused={true}
               onClick={(event) => {
                   this.handleSubmit();
-                  this.handleClose();
+                    {/* this.handleClose(); */}
                   }}
             />,
             <FlatButton
@@ -215,14 +224,16 @@ class Recipes extends Component {
                         <form onSubmit={this.handleSubmit}>
                             <TextField
                             hintText="Enter recipe title"
-                            floatingLabelText="recipe title"
+                            floatingLabelText="Recipe title"
                             fullWidth={true}
+                            errorText={this.state.title_error}
                             name='title'
                             onChange={this.handleChange} />
                             <br/>
                             <TextField
                             hintText="Enter recipe body"
-                            floatingLabelText="recipe body"
+                            floatingLabelText="Recipe body"
+                            errorText={this.state.body_error}                            
                             name='body'
                             rows={2}
                             multiLine={true}
@@ -241,7 +252,7 @@ class Recipes extends Component {
                         <form onSubmit={this.handleSubmit}>
                             <TextField
                             hintText="Enter recipe title"
-                            floatingLabelText="recipe title"
+                            floatingLabelText="Recipe title"
                             fullWidth={true}
                             name='title'
                             defaultValue={this.state.editing.title}
@@ -249,7 +260,7 @@ class Recipes extends Component {
                             <br/>
                             <TextField
                             hintText="Enter recipe body"
-                            floatingLabelText="recipe body"
+                            floatingLabelText="Recipe body"
                             rows={4}
                             multiLine={true}
                             name='body'

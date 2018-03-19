@@ -7,46 +7,46 @@ exports[`Register Component renders without crashing 1`] = `
   <MuiThemeProvider>
     <div>
       <div>
-        <TextField
-          disabled={false}
-          floatingLabelFixed={false}
-          floatingLabelText="Username"
-          fullWidth={false}
-          hintText="Enter your Username"
-          multiLine={false}
-          onChange={[Function]}
-          rows={1}
-          type="text"
-          underlineShow={true}
-        />
-        <br />
-        <TextField
-          disabled={false}
-          floatingLabelFixed={false}
-          floatingLabelText="Email"
-          fullWidth={false}
-          hintText="Enter your Email"
-          multiLine={false}
-          onChange={[Function]}
-          rows={1}
-          type="text"
-          underlineShow={true}
-        />
-        <br />
-        <TextField
-          disabled={false}
-          floatingLabelFixed={false}
-          floatingLabelText="Password"
-          fullWidth={false}
-          hintText="Enter your Password"
-          multiLine={false}
-          onChange={[Function]}
-          rows={1}
-          type="password"
-          underlineShow={true}
-        />
-        <br />
-        <div>
+        <form>
+          <TextField
+            disabled={false}
+            floatingLabelFixed={false}
+            floatingLabelText="Username"
+            fullWidth={false}
+            hintText="Enter your Username"
+            multiLine={false}
+            onChange={[Function]}
+            rows={1}
+            type="text"
+            underlineShow={true}
+          />
+          <br />
+          <TextField
+            disabled={false}
+            floatingLabelFixed={false}
+            floatingLabelText="Email"
+            fullWidth={false}
+            hintText="Enter your Email"
+            multiLine={false}
+            onChange={[Function]}
+            rows={1}
+            type="text"
+            underlineShow={true}
+          />
+          <br />
+          <TextField
+            disabled={false}
+            floatingLabelFixed={false}
+            floatingLabelText="Password"
+            fullWidth={false}
+            hintText="Enter your Password"
+            multiLine={false}
+            onChange={[Function]}
+            rows={1}
+            type="password"
+            underlineShow={true}
+          />
+          <br />
           <RaisedButton
             disabled={false}
             fullWidth={false}
@@ -57,11 +57,12 @@ exports[`Register Component renders without crashing 1`] = `
             secondary={true}
             style={
               Object {
-                "marginRight": 20,
+                "float": "center",
+                "marginRight": 60,
               }
             }
           />
-        </div>
+        </form>
       </div>
     </div>
   </MuiThemeProvider>

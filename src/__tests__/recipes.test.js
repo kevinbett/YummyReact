@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {shallowToJson} from 'enzyme-to-json';
 
-import Recipes from '../recipes/recipes';
+import Recipes from '../components/recipes/Recipes';
 
 describe('Recipes Component', () => {
     const wrapper = shallow(<Recipes match={{ params: {}}}/>);

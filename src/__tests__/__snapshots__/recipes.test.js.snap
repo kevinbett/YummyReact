@@ -52,7 +52,7 @@ exports[`Recipes Component renders without crashing 1`] = `
         <TextField
           disabled={false}
           floatingLabelFixed={false}
-          floatingLabelText="recipe title"
+          floatingLabelText="Recipe title"
           fullWidth={true}
           hintText="Enter recipe title"
           multiLine={false}
@@ -66,7 +66,7 @@ exports[`Recipes Component renders without crashing 1`] = `
         <TextField
           disabled={false}
           floatingLabelFixed={false}
-          floatingLabelText="recipe body"
+          floatingLabelText="Recipe body"
           fullWidth={true}
           hintText="Enter recipe body"
           multiLine={true}
@@ -128,7 +128,7 @@ exports[`Recipes Component renders without crashing 1`] = `
         <TextField
           disabled={false}
           floatingLabelFixed={false}
-          floatingLabelText="recipe title"
+          floatingLabelText="Recipe title"
           fullWidth={true}
           hintText="Enter recipe title"
           multiLine={false}
@@ -142,7 +142,7 @@ exports[`Recipes Component renders without crashing 1`] = `
         <TextField
           disabled={false}
           floatingLabelFixed={false}
-          floatingLabelText="recipe body"
+          floatingLabelText="Recipe body"
           fullWidth={true}
           hintText="Enter recipe body"
           multiLine={true}
@@ -188,6 +188,10 @@ exports[`Recipes Component renders without crashing 1`] = `
             Recipes
           </b>
         </h2>
+        <label>
+           
+           
+        </label>
       </GridColumn>
       <GridColumn
         floated="right"

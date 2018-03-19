@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {shallowToJson} from 'enzyme-to-json';
 
-import Login from '../login/Login';
+import Login from '../components/user/Login';
 
 describe('Login Component', () => {
     const wrapper = shallow(<Login />);

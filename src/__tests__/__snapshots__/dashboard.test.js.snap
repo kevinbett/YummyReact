@@ -7,111 +7,26 @@ exports[`DashboardComponent renders without crashing 1`] = `
   >
     <AppBar
       iconElementRight={
-        <ToolbarGroup
-          firstChild={false}
-          lastChild={false}
-        >
-          <FlatButton
-            disabled={false}
-            fullWidth={false}
-            label={null}
-            labelPosition="after"
-            labelStyle={Object {}}
-            onClick={[Function]}
-            onKeyboardFocus={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-            onTouchStart={[Function]}
-            primary={false}
-            secondary={false}
-            style={
-              Object {
-                "backgroundColor": "transparent",
-                "color": "white",
-              }
+        <FlatButton
+          disabled={false}
+          fullWidth={false}
+          label="Logout"
+          labelPosition="after"
+          labelStyle={Object {}}
+          onClick={[Function]}
+          onKeyboardFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onTouchStart={[Function]}
+          primary={false}
+          secondary={false}
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "color": "white",
             }
-          />
-          <IconMenu
-            anchorOrigin={
-              Object {
-                "horizontal": "left",
-                "vertical": "top",
-              }
-            }
-            animated={true}
-            clickCloseDelay={200}
-            iconButtonElement={
-              <IconButton
-                disableTouchRipple={false}
-                disabled={false}
-                iconStyle={Object {}}
-                tooltipPosition="bottom-center"
-                touch={false}
-              >
-                <NavigationMoreVert />
-              </IconButton>
-            }
-            multiple={false}
-            onClick={[Function]}
-            onItemClick={[Function]}
-            onKeyboardFocus={[Function]}
-            onMouseDown={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-            onMouseUp={[Function]}
-            onRequestChange={[Function]}
-            open={null}
-            targetOrigin={
-              Object {
-                "horizontal": "left",
-                "vertical": "bottom",
-              }
-            }
-            useLayerForClickAway={false}
-          >
-            <MenuItem
-              anchorOrigin={
-                Object {
-                  "horizontal": "right",
-                  "vertical": "top",
-                }
-              }
-              checked={false}
-              desktop={false}
-              disabled={false}
-              focusState="none"
-              insetChildren={false}
-              primaryText="Change password"
-              targetOrigin={
-                Object {
-                  "horizontal": "left",
-                  "vertical": "top",
-                }
-              }
-            />
-            <MenuItem
-              anchorOrigin={
-                Object {
-                  "horizontal": "right",
-                  "vertical": "top",
-                }
-              }
-              checked={false}
-              desktop={false}
-              disabled={false}
-              focusState="none"
-              insetChildren={false}
-              onClick={[Function]}
-              primaryText="Sign out"
-              targetOrigin={
-                Object {
-                  "horizontal": "left",
-                  "vertical": "top",
-                }
-              }
-            />
-          </IconMenu>
-        </ToolbarGroup>
+          }
+        />
       }
       onLeftIconButtonClick={[Function]}
       showMenuIconButton={false}
@@ -167,7 +82,7 @@ exports[`DashboardComponent renders without crashing 1`] = `
         <Route
           component={[Function]}
           exact={true}
-          path="/dashboard/category"
+          path="/dashboard/change-password"
         />
       </div>
     </Paper>

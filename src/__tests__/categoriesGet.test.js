@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {shallowToJson} from 'enzyme-to-json';
 
-import CategoryGet from '../categories/GetCategories';
+import CategoryGet from '../components/categories/Categories';
 
 describe('CategoryGet Component', () => {
     const wrapper = shallow(<CategoryGet />);

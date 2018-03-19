@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {shallowToJson} from 'enzyme-to-json';
 
-import Dashboard from '../homepage/dashboard';
+import Dashboard from '../components/homepage/Dashboard';
 
 describe('DashboardComponent', () => {
     const wrapper = shallow(<Dashboard />);

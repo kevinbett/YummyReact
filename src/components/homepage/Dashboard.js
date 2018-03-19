@@ -8,9 +8,9 @@ import { orange700} from 'material-ui/styles/colors';
 import '../../static/css/home.css';
 import Navigation from '../homepage/Home';
 import Welcome from '../homepage/Welcome';
+import ChangePassword from '../user/Change_password';
 import LeftDrawer from '../homepage/Drawer';
 import CategoryGet from '../categories/Categories';
-import CategoryPost from '../categories/AddCategories';
 import {Route} from "react-router-dom";
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -75,8 +75,8 @@ class Dashboard extends Component {
                         <div>
                             <Route exact path="/dashboard/" component={Welcome} />                                                                                  
                             <Route exact path="/dashboard/categories" component={CategoryGet} />
-                            <Route exact path="/dashboard/category/:id/recipes/" component={Recipes} />                        
-                            <Route exact path="/dashboard/category" component={CategoryPost} />                         
+                            <Route exact path="/dashboard/category/:id/recipes/" component={Recipes} />
+                            <Route exact path="/dashboard/change-password" component={ChangePassword} />                                                                             
                         </div>
                     </Paper>              
                     <Navigation/>

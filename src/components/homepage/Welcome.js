@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
+import axios from 'axios';
+
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 
 class Welcome extends Component {
-  state = {
-    selectedIndex: 0,
-  };
-
-  select = (index) => this.setState({selectedIndex: index});
+  constructor(props) {
+    super(props);
+}
 
   render() {
     return (
