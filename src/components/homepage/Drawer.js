@@ -12,6 +12,7 @@ import Dialog from 'material-ui/Dialog';
 import {BrowserRouter} from "react-router-dom";
 import {notify} from 'react-notify-toast';
 import axiosInstance from '../../Axios';
+import CategoriesGet from '../categories/Categories';
 
 class LeftDrawer extends React.Component {
 
@@ -43,8 +44,7 @@ class LeftDrawer extends React.Component {
       event.preventDefault();
       var category = {
         name: this.state.name        
-      };
-      // const headers = {headers: {"x-access-token": window.localStorage.getItem("token")},Content_Type: "application/json"};    
+      };  
   
       axiosInstance.post('/categories/',category)
         .then(res => {
