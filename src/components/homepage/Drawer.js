@@ -110,6 +110,23 @@ class LeftDrawer extends React.Component {
                 ]}/>
             </List>
             <Divider />
+            <List>
+                <ListItem primaryText="User" initiallyOpen={true}
+                primaryTogglesNestedList={true}  nestedItems={[ 
+                  <ListItem
+                  key={1}
+                  onClick={this.handleOpen}
+                  primaryText="Change password "
+                  leftIcon={<Add />}
+                />,
+                <ListItem
+                  key={1}
+                  onClick={this.handleViewcategories}
+                  primaryText="Reset"
+                  leftIcon={<RemoveRedEye />}
+                />
+                ]}/>
+            </List>
           </Drawer>
         </div>
         </BrowserRouter>

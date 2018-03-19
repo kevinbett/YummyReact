@@ -11,7 +11,8 @@ import Welcome from '../homepage/Welcome';
 import ChangePassword from '../user/Change_password';
 import LeftDrawer from '../homepage/Drawer';
 import CategoryGet from '../categories/Categories';
-import {Route} from "react-router-dom";
+import {Link, Route} from "react-router-dom";
+import ActionHome from 'material-ui/svg-icons/action/home';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
@@ -42,7 +43,8 @@ class Dashboard extends Component {
         super(props);      
         this.state = {open: false, username:'', error:'', message:''}
         this.handleLogin = this.handleLogin.bind(this);
-        this.handleLogout = this.handleLogout.bind(this);          
+        this.handleLogout = this.handleLogout.bind(this);
+        this.handleChangePassword = this.handleChangePassword.bind(this);                            
     }
     handleLogin(event){
         event.preventDefault();
@@ -53,6 +55,10 @@ class Dashboard extends Component {
         window.location.assign('/login');
         notify.show("Successfully logged out", 'success', 4000);                
     }
+    handleChangePassword = (event) => {
+        event.preventDefault();
+        window.location.assign('/dashboard/change-password');                
+    }
     
     handleToggle = () => this.setState({open: !this.state.open});
 
@@ -60,13 +66,25 @@ class Dashboard extends Component {
         if (!logged_in) {
             window.location.assign('/login');
         };
+        const rightButtons = (
+            <div className="appBarIcons">
+            <IconMenu
+                iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+                anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+                targetOrigin={{horizontal: 'left', vertical: 'top'}}
+                >
+                <MenuItem primaryText="Change Password" onClick={this.handleChangePassword}/>
+                <MenuItem primaryText="Sign out" onClick={this.handleLogout}/>
+            </IconMenu>
+            </div>
+        );
         return (
             <MuiThemeProvider>
                 <div className="landing">
                         <AppBar
                         onLeftIconButtonClick={this.handleToggle}
                         showMenuIconButton={false}
-                        iconElementRight={<FlatButton label="Logout" onClick={this.handleLogout} style={buttonStyle}/>}
+                        iconElementRight={rightButtons}
                         style={{backgroundColor: orange700}}>
                         <Notifications options={{zIndex: 5000}}/>
                         </AppBar>

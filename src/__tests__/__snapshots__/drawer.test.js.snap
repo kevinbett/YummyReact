@@ -159,6 +159,75 @@ exports[`LeftDrawer Component renders without crashing 1`] = `
       <Divider
         inset={false}
       />
+      <List>
+        <ListItem
+          autoGenerateNestedIndicator={true}
+          containerElement="span"
+          disableKeyboardFocus={false}
+          disabled={false}
+          initiallyOpen={true}
+          insetChildren={false}
+          nestedItems={
+            Array [
+              <ListItem
+                autoGenerateNestedIndicator={true}
+                containerElement="span"
+                disableKeyboardFocus={false}
+                disabled={false}
+                initiallyOpen={false}
+                insetChildren={false}
+                leftIcon={<ImageAddToPhotos />}
+                nestedItems={Array []}
+                nestedLevel={0}
+                onClick={[Function]}
+                onKeyboardFocus={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+                onNestedListToggle={[Function]}
+                onTouchEnd={[Function]}
+                onTouchStart={[Function]}
+                open={null}
+                primaryText="Change password "
+                primaryTogglesNestedList={false}
+                secondaryTextLines={1}
+              />,
+              <ListItem
+                autoGenerateNestedIndicator={true}
+                containerElement="span"
+                disableKeyboardFocus={false}
+                disabled={false}
+                initiallyOpen={false}
+                insetChildren={false}
+                leftIcon={<ImageRemoveRedEye />}
+                nestedItems={Array []}
+                nestedLevel={0}
+                onClick={[Function]}
+                onKeyboardFocus={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+                onNestedListToggle={[Function]}
+                onTouchEnd={[Function]}
+                onTouchStart={[Function]}
+                open={null}
+                primaryText="Reset"
+                primaryTogglesNestedList={false}
+                secondaryTextLines={1}
+              />,
+            ]
+          }
+          nestedLevel={0}
+          onKeyboardFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onNestedListToggle={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          open={null}
+          primaryText="User"
+          primaryTogglesNestedList={true}
+          secondaryTextLines={1}
+        />
+      </List>
     </Drawer>
   </div>
 </BrowserRouter>

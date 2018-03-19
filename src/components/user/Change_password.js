@@ -20,10 +20,9 @@ class ChangePassword extends Component {
 handleChangePassword(event){
   event.preventDefault();     
         var payload = {
-            "old_password": this.state.old_password,
             "new_password": this.state.new_password
         }
-        axiosInstance.post('/change-password/', payload)
+        axiosInstance.post('/auth/change-password/', payload)
             .then(response => {
                 window.location.assign('/login')
                 notify.show("Password changed!", 'success', 4000);
@@ -40,13 +39,8 @@ handleChangePassword(event){
     <h3 style={{marginTop: 20}}> Change Password</h3>
     <form>
         <TextField
-            hintText="Enter your old_password"
-            floatingLabelText="old password"
-            onChange={(event, newValue) =>
-                this.setState({ old_password: newValue })} />
-        <br />
-        <TextField
             hintText="Enter your new password"
+            type='password'
             floatingLabelText="New password"
             onChange={(event, newValue) =>
                 this.setState({ new_password: newValue })} />

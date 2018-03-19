@@ -49,7 +49,6 @@ class Home extends Component {
                             <ToolbarTitle text="Welcome to Yummy Recipes."/>
                         </Toolbar>
                         <Login/>                        
-                           
                         </div>
                     </Paper>                
                     

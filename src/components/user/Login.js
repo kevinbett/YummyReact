@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
+import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
 import {notify} from 'react-notify-toast';
-import axios from 'axios';
+import axiosInstance from '../../Axios';
 import Register from './Register';
+import { Link } from 'react-router-dom';
+import red500 from 'material-ui/styles/colors';
+import LinearProgress from 'material-ui/LinearProgress';
 
 const styles = {
     headline: {
@@ -31,24 +36,94 @@ class Login extends Component {
             username: '',
             password: '',
             error: '',
-            slideIndex: 0
+            slideIndex: 0,
+            open: false,
         }
         this.handleCancel = this.handleCancel.bind(this);
+        this.handleResetPassword = this.handleResetPassword.bind(this);        
     }
     handleCancel(event) {
         event.preventDefault();
         this.props.history.push('/');
-    }
+    };
+    handleOpen = () => {
+        this.setState({open: true});
+    };
     handleChange = (value) => {
         this.setState({
           slideIndex: value,
         });
       };
+    handleResetChange = event => {
+        this.setState({ username: event.target.value , email: event.target.value});       
+    }
+    handleClose = () => {
+        this.setState({open: false, error: '', message:''});
+    };
+    handleResetPassword(event){ 
+        event.preventDefault();  
+        var payload = {
+            "username": this.state.username,
+            "email": this.state.email
+        }
+        axiosInstance.post('/auth/reset-password/', payload)
+            .then(response => {
+                this.setState({message: response.data.message});
+            })
+            .catch(error => {
+                this.setState({error: error.response.data.message})
+            })
+      }
+
     render() {
+        const actions = [
+            <FlatButton
+              label="Submit"
+              primary={true}
+              keyboardFocused={true}
+              onClick={(event) => {
+                  this.handleResetPassword(event);
+                  <LinearProgress mode="indeterminate" />
+                  }}
+            />,
+            <FlatButton
+              label="Close"
+              primary={false}
+              keyboardFocused={false}
+              onClick={this.handleClose}
+            />,
+          ];
         return (
 
             <div className="Login">
                 <MuiThemeProvider>
+                <Dialog
+                    title="Reset Password"
+                    actions={actions}
+                    modal={false}
+                    open={this.state.open}
+                    onRequestClose={this.handleClose}
+                    >
+                    { this.state.error?
+                    <label color={red500}> {this.state.error}</label>: ''}
+                    { this.state.message?
+                    <label color={red500}> {this.state.message}</label>: ''}
+                    <form onSubmit={this.handleSubmit}>
+                        <TextField
+                        hintText="Enter Username"
+                        floatingLabelText="Username"
+                        fullWidth={true}
+                        onChange={(event, newValue) =>
+                                            this.setState({ username: newValue })} />
+                        <br/>
+                        <TextField
+                        hintText="Enter Email"
+                        floatingLabelText="Enter Email"
+                        fullWidth={true}                        
+                        onChange={(event, newValue) =>
+                                            this.setState({ email: newValue })} />
+                    </form>
+                </Dialog> 
                     <div>
                         <Tabs
                         onChange={this.handleChange}
@@ -71,14 +146,17 @@ class Login extends Component {
                                     this.setState({ username: newValue })} />
                             <br />
                             <TextField
-                                type="password"
+                                type="Enter password"
                                 hintText="Enter your Password"
                                 floatingLabelText="Password"
+                                type='password'
                                 onChange={(event, newValue) =>
                                     this.setState({ password: newValue })} />
                             <br />
                             <RaisedButton type='submit' label="Submit" secondary={true}
                                 style={style} onClick={(event) => this.handleClick(event)} />
+                            <br/><br/> 
+                            <p>Forgot password? <FlatButton onClick={(event) => this.handleOpen()}>Reset</FlatButton></p>
                         </form>
                         </div>
                         <div style={styles.slide}>
@@ -92,24 +170,20 @@ class Login extends Component {
     }
     handleClick(event) {
         event.preventDefault();
-        var apiBaseUrl = "http://localhost:5000/api/auth/";
         var payload = {
             "username": this.state.username,
             "password": this.state.password
         }
-        axios.post(apiBaseUrl + 'login/', payload)
+        axiosInstance.post('auth/login/', payload)
             .then(response => {
                 window.localStorage.setItem("token", response.data.token)
                 window.localStorage.setItem("username", response.data.username)
                 window.localStorage.setItem("logged_in", true)
-                if (response.status === 200) {
-                    window.location.assign('/dashboard/categories')
+                window.location.assign('/dashboard/categories')
                 }
-                else {
-                    window.location.assign("/login");
-                }
-            })
+            )
             .catch(error => {
+                window.location.assign("/login");                
                 notify.show(error.response.data.message, 'error', 4000)
             })
     }

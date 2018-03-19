@@ -157,7 +157,7 @@ exports[`Recipes Component renders without crashing 1`] = `
     </Dialog>
     <Grid>
       <GridColumn
-        width={5}
+        width={3}
       >
         <FloatingActionButton
           disabled={false}
@@ -175,7 +175,41 @@ exports[`Recipes Component renders without crashing 1`] = `
         </FloatingActionButton>
       </GridColumn>
       <GridColumn
-        width={5}
+        width={3}
+      >
+        <div
+          style={
+            Object {
+              "display": "flex",
+              "flexWrap": "wrap",
+            }
+          }
+        >
+          <Chip
+            backgroundColor="#64b5f6"
+            containerElement="div"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyboardFocus={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+            style={
+              Object {
+                "marginTop": 20,
+              }
+            }
+          >
+            Category: 
+          </Chip>
+        </div>
+      </GridColumn>
+      <GridColumn
+        width={3}
       >
         <h2
           style={
@@ -188,10 +222,6 @@ exports[`Recipes Component renders without crashing 1`] = `
             Recipes
           </b>
         </h2>
-        <label>
-           
-           
-        </label>
       </GridColumn>
       <GridColumn
         floated="right"

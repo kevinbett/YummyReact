@@ -5,6 +5,77 @@ exports[`Login Component renders without crashing 1`] = `
   className="Login"
 >
   <MuiThemeProvider>
+    <Dialog
+      actions={
+        Array [
+          <FlatButton
+            disabled={false}
+            fullWidth={false}
+            keyboardFocused={true}
+            label="Submit"
+            labelPosition="after"
+            labelStyle={Object {}}
+            onClick={[Function]}
+            onKeyboardFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onTouchStart={[Function]}
+            primary={true}
+            secondary={false}
+          />,
+          <FlatButton
+            disabled={false}
+            fullWidth={false}
+            keyboardFocused={false}
+            label="Close"
+            labelPosition="after"
+            labelStyle={Object {}}
+            onClick={[Function]}
+            onKeyboardFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onTouchStart={[Function]}
+            primary={false}
+            secondary={false}
+          />,
+        ]
+      }
+      autoDetectWindowHeight={true}
+      autoScrollBodyContent={false}
+      modal={false}
+      onRequestClose={[Function]}
+      open={false}
+      repositionOnUpdate={true}
+      title="Reset Password"
+    >
+      <form>
+        <TextField
+          disabled={false}
+          floatingLabelFixed={false}
+          floatingLabelText="Username"
+          fullWidth={true}
+          hintText="Enter Username"
+          multiLine={false}
+          onChange={[Function]}
+          rows={1}
+          type="text"
+          underlineShow={true}
+        />
+        <br />
+        <TextField
+          disabled={false}
+          floatingLabelFixed={false}
+          floatingLabelText="Enter Email"
+          fullWidth={true}
+          hintText="Enter Email"
+          multiLine={false}
+          onChange={[Function]}
+          rows={1}
+          type="text"
+          underlineShow={true}
+        />
+      </form>
+    </Dialog>
     <div>
       <Tabs
         initialSelectedIndex={0}
@@ -99,6 +170,26 @@ exports[`Login Component renders without crashing 1`] = `
               }
               type="submit"
             />
+            <br />
+            <br />
+            <p>
+              Forgot password? 
+              <FlatButton
+                disabled={false}
+                fullWidth={false}
+                labelPosition="after"
+                labelStyle={Object {}}
+                onClick={[Function]}
+                onKeyboardFocus={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+                onTouchStart={[Function]}
+                primary={false}
+                secondary={false}
+              >
+                Reset
+              </FlatButton>
+            </p>
           </form>
         </div>
         <div

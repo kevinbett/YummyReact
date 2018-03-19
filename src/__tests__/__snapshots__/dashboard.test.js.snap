@@ -7,26 +7,91 @@ exports[`DashboardComponent renders without crashing 1`] = `
   >
     <AppBar
       iconElementRight={
-        <FlatButton
-          disabled={false}
-          fullWidth={false}
-          label="Logout"
-          labelPosition="after"
-          labelStyle={Object {}}
-          onClick={[Function]}
-          onKeyboardFocus={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          onTouchStart={[Function]}
-          primary={false}
-          secondary={false}
-          style={
-            Object {
-              "backgroundColor": "transparent",
-              "color": "white",
+        <div
+          className="appBarIcons"
+        >
+          <IconMenu
+            anchorOrigin={
+              Object {
+                "horizontal": "left",
+                "vertical": "bottom",
+              }
             }
-          }
-        />
+            animated={true}
+            clickCloseDelay={200}
+            iconButtonElement={
+              <IconButton
+                disableTouchRipple={false}
+                disabled={false}
+                iconStyle={Object {}}
+                tooltipPosition="bottom-center"
+                touch={false}
+              >
+                <NavigationMoreVert />
+              </IconButton>
+            }
+            multiple={false}
+            onClick={[Function]}
+            onItemClick={[Function]}
+            onKeyboardFocus={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onRequestChange={[Function]}
+            open={null}
+            targetOrigin={
+              Object {
+                "horizontal": "left",
+                "vertical": "top",
+              }
+            }
+            useLayerForClickAway={false}
+          >
+            <MenuItem
+              anchorOrigin={
+                Object {
+                  "horizontal": "right",
+                  "vertical": "top",
+                }
+              }
+              checked={false}
+              desktop={false}
+              disabled={false}
+              focusState="none"
+              insetChildren={false}
+              onClick={[Function]}
+              primaryText="Change Password"
+              targetOrigin={
+                Object {
+                  "horizontal": "left",
+                  "vertical": "top",
+                }
+              }
+            />
+            <MenuItem
+              anchorOrigin={
+                Object {
+                  "horizontal": "right",
+                  "vertical": "top",
+                }
+              }
+              checked={false}
+              desktop={false}
+              disabled={false}
+              focusState="none"
+              insetChildren={false}
+              onClick={[Function]}
+              primaryText="Sign out"
+              targetOrigin={
+                Object {
+                  "horizontal": "left",
+                  "vertical": "top",
+                }
+              }
+            />
+          </IconMenu>
+        </div>
       }
       onLeftIconButtonClick={[Function]}
       showMenuIconButton={false}

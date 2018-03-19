@@ -4,6 +4,8 @@ import axios from 'axios';
 import '../../static/css/home.css';
 import 'semantic-ui-css/semantic.min.css';
 import Pagination from 'material-ui-pagination';
+import Chip from 'material-ui/Chip';
+import {blue300, indigo900} from 'material-ui/styles/colors';
 import {notify} from 'react-notify-toast';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -19,6 +21,13 @@ const styles = {
       justifyContent: 'space-around',
       marginLeft: 40,
     },
+    chip: {
+        marginTop: 20,
+      },
+    wrapper: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    },
     gridList: {
       width: 500,
       height: 450,
@@ -32,6 +41,7 @@ class Recipes extends Component {
         super(props);
         this.state = {
             recipes:[],
+            category_name: '',
             editing:{},
             token: '',
             username: '',
@@ -142,7 +152,9 @@ class Recipes extends Component {
         const self = this;
         axiosInstance.get(apiBaseUrl)
         .then(response => {
-            self.setState({recipes: response.data.results, pages: response.data['pages']})                         
+            console.log(response.data.results[0].category.name);           
+            self.setState({recipes: response.data.results, category_name: response.data.results[0].category.name, 
+                pages: response.data['pages']})                         
         })
         .catch(error => {            
             if (error.response){
@@ -268,14 +280,23 @@ class Recipes extends Component {
                         </form>
                 </Dialog>
                 <Grid>
-                    <Grid.Column width={5}>
+                    <Grid.Column width={3}>
                         <FloatingActionButton style={{marginTop: 10}} secondary={true} onClick={this.handleOpen}>
                         <ContentAdd />
                         </FloatingActionButton>
                     </Grid.Column>
-                    <Grid.Column width={5}>                        
+                    <Grid.Column width={3}>
+                    <div style={styles.wrapper}>
+                        <Chip
+                        backgroundColor={blue300}
+                        style={styles.chip}
+                        >
+                        Category: {this.state.category_name}
+                        </Chip>
+                    </div>
+                    </Grid.Column>
+                    <Grid.Column width={3}>                        
                         <h2 style={{marginTop: 20}}><b>Recipes</b></h2>
-                        <label> {window.localStorage.getItem('category_name')} </label>
                     </Grid.Column>
                     <Grid.Column floated='right' width={5}>
                         <TextField type="text"
