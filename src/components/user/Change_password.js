@@ -29,7 +29,6 @@ handleChangePassword(event){
                 notify.show("Password changed!", 'success', 4000);
             })
             .catch(error => {
-                console.log(error.response.data.error);
                 notify.show(error.response.data.error, 'error', 4000)
             })
 }
