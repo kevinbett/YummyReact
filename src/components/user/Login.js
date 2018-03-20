@@ -11,7 +11,7 @@ import axiosInstance from '../../Axios';
 import Register from './Register';
 import { Link } from 'react-router-dom';
 import red500 from 'material-ui/styles/colors';
-import LinearProgress from 'material-ui/LinearProgress';
+import RefreshIndicator from 'material-ui/RefreshIndicator';
 
 const styles = {
     headline: {
@@ -83,7 +83,6 @@ class Login extends Component {
               keyboardFocused={true}
               onClick={(event) => {
                   this.handleResetPassword(event);
-                  <LinearProgress mode="indeterminate" />
                   }}
             />,
             <FlatButton
@@ -109,6 +108,14 @@ class Login extends Component {
                     { this.state.message?
                     <label color={red500}> {this.state.message}</label>: ''}
                     <form onSubmit={this.handleSubmit}>
+                    <RefreshIndicator
+                        size={50}
+                        left={360}
+                        top={70}
+                        loadingColor="#FF9800"
+                        status="loading"
+                        style={style.refresh}
+                        />
                         <TextField
                         hintText="Enter Username"
                         floatingLabelText="Username"

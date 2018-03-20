@@ -61,7 +61,7 @@ class Register extends Component {
         }
         axios.post(apiBaseUrl + 'register/', payload)
             .then(response => {
-                window.location.assign(`/login`)
+                setTimeout(function(){ window.location.assign(`/login`) }, 2000);
                 notify.show(response.data.message, 'success', 4000)                               
             })
             .catch(error => {
