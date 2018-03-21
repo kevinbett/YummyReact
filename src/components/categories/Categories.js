@@ -111,7 +111,8 @@ class CategoriesGet extends Component {
             }                      
         })
         .catch(error => {
-            notify.show(error.response.data.error, 'error', 8000);
+            console.log(error.response.data);
+            // notify.show(error.response.data.error, 'error', 8000);
         })
         apiBaseUrl = "/categories/";
     }
