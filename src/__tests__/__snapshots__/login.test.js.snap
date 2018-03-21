@@ -49,21 +49,17 @@ exports[`Login Component renders without crashing 1`] = `
       title="Reset Password"
     >
       <form>
-        <TextField
-          disabled={false}
-          floatingLabelFixed={false}
-          floatingLabelText="Username"
-          fullWidth={true}
-          hintText="Enter Username"
-          multiLine={false}
-          onChange={[Function]}
-          rows={1}
-          type="text"
-          underlineShow={true}
+        <RefreshIndicator
+          left={360}
+          loadingColor="#FF9800"
+          percentage={0}
+          size={50}
+          status="hide"
+          top={70}
         />
-        <br />
         <TextField
           disabled={false}
+          errorText=""
           floatingLabelFixed={false}
           floatingLabelText="Enter Email"
           fullWidth={true}
@@ -131,6 +127,7 @@ exports[`Login Component renders without crashing 1`] = `
           <form>
             <TextField
               disabled={false}
+              errorText=""
               floatingLabelFixed={false}
               floatingLabelText="Username"
               fullWidth={false}
@@ -144,6 +141,7 @@ exports[`Login Component renders without crashing 1`] = `
             <br />
             <TextField
               disabled={false}
+              errorText=""
               floatingLabelFixed={false}
               floatingLabelText="Password"
               fullWidth={false}

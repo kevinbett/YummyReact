@@ -20,17 +20,14 @@ class Navigation extends Component {
       <Paper zDepth={1} className='footer'>
         <BottomNavigation selectedIndex={this.state.selectedIndex}>
           <BottomNavigationItem
-            label="Home"
             icon={recentsIcon}
             onClick={() => this.select(0)}
           />
           <BottomNavigationItem
-            label="Heroku"
             icon={favoritesIcon}
             onClick={() => this.select(1)}
           />
           <BottomNavigationItem
-            label="Github"
             icon={nearbyIcon}
             onClick={() => this.select(2)}
           />

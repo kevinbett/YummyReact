@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
@@ -9,9 +8,8 @@ import SwipeableViews from 'react-swipeable-views';
 import {notify} from 'react-notify-toast';
 import axiosInstance from '../../Axios';
 import Register from './Register';
-import { Link } from 'react-router-dom';
-import red500 from 'material-ui/styles/colors';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
+import { Label } from 'semantic-ui-react';
 
 const styles = {
     headline: {
@@ -38,6 +36,7 @@ class Login extends Component {
             error: '',
             slideIndex: 0,
             open: false,
+            status: 'hide'
         }
         this.handleCancel = this.handleCancel.bind(this);
         this.handleResetPassword = this.handleResetPassword.bind(this);        
@@ -52,28 +51,31 @@ class Login extends Component {
     handleChange = (value) => {
         this.setState({
           slideIndex: value,
+          error: '',
         });
       };
     handleResetChange = event => {
-        this.setState({ username: event.target.value , email: event.target.value});       
+        this.setState({email: event.target.value});       
     }
     handleClose = () => {
-        this.setState({open: false, error: '', message:''});
+        this.setState({open: false, message:'', error: '', status:'hide'});
     };
     handleResetPassword(event){ 
         event.preventDefault();  
         var payload = {
-            "username": this.state.username,
             "email": this.state.email
         }
         axiosInstance.post('/auth/reset-password/', payload)
             .then(response => {
-                this.setState({message: response.data.message});
+                this.setState({message: response.data.message, status:'hide'});
             })
             .catch(error => {
-                this.setState({error: error.response.data.message})
+                this.setState({'error': error.response.data.error, status:'hide'})
             })
       }
+    componentDidMount(){
+        notify.show(window.localStorage.getItem('message'), 'success', 4000)        
+    }
 
     render() {
         const actions = [
@@ -83,6 +85,7 @@ class Login extends Component {
               keyboardFocused={true}
               onClick={(event) => {
                   this.handleResetPassword(event);
+                  this.setState({status:'loading'});
                   }}
             />,
             <FlatButton
@@ -95,7 +98,6 @@ class Login extends Component {
         return (
 
             <div className="Login">
-                <MuiThemeProvider>
                 <Dialog
                     title="Reset Password"
                     actions={actions}
@@ -103,32 +105,24 @@ class Login extends Component {
                     open={this.state.open}
                     onRequestClose={this.handleClose}
                     >
-                    { this.state.error?
-                    <label color={red500}> {this.state.error}</label>: ''}
                     { this.state.message?
-                    <label color={red500}> {this.state.message}</label>: ''}
+                        <Label color='green' horizontal>{this.state.message}</Label>: ''}
                     <form onSubmit={this.handleSubmit}>
                     <RefreshIndicator
                         size={50}
                         left={360}
                         top={70}
                         loadingColor="#FF9800"
-                        status="loading"
+                        status={this.state.status}
                         style={style.refresh}
                         />
                         <TextField
-                        hintText="Enter Username"
-                        floatingLabelText="Username"
-                        fullWidth={true}
-                        onChange={(event, newValue) =>
-                                            this.setState({ username: newValue })} />
-                        <br/>
-                        <TextField
                         hintText="Enter Email"
                         floatingLabelText="Enter Email"
+                        errorText={this.state.error}
                         fullWidth={true}                        
                         onChange={(event, newValue) =>
-                                            this.setState({ email: newValue })} />
+                                            this.setState({ email: newValue, error: ''})} />
                     </form>
                 </Dialog> 
                     <div>
@@ -149,16 +143,17 @@ class Login extends Component {
                             <TextField
                                 hintText="Enter your Username"
                                 floatingLabelText="Username"
+                                errorText={this.state.error}
                                 onChange={(event, newValue) =>
-                                    this.setState({ username: newValue })} />
+                                    this.setState({ username: newValue, error:'' })} />
                             <br />
                             <TextField
-                                type="Enter password"
                                 hintText="Enter your Password"
                                 floatingLabelText="Password"
+                                errorText={this.state.error}
                                 type='password'
                                 onChange={(event, newValue) =>
-                                    this.setState({ password: newValue })} />
+                                    this.setState({ password: newValue, error: ''})} />
                             <br />
                             <RaisedButton type='submit' label="Submit" secondary={true}
                                 style={style} onClick={(event) => this.handleClick(event)} />
@@ -171,7 +166,6 @@ class Login extends Component {
                         </div>
                         </SwipeableViews>
                     </div>
-                </MuiThemeProvider>
             </div>
         );
     }
@@ -190,8 +184,12 @@ class Login extends Component {
                 }
             )
             .catch(error => {
-                window.location.assign("/login");                
-                notify.show(error.response.data.message, 'error', 4000)
+                console.log(error.response.data.error);
+                if(error.response.data.message){
+                    this.setState({error: error.response.data.message})
+                } else {
+                    notify.show(error.response.data.error, 'error', 4000)    
+                }
             })
     }
 

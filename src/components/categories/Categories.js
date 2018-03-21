@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Button, Card} from 'semantic-ui-react';
-import axios from 'axios';
 import '../../static/css/home.css';
 import 'semantic-ui-css/semantic.min.css';
 import Pagination from 'material-ui-pagination';
@@ -9,8 +8,8 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import { Grid } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
 import axiosInstance from '../../Axios';
+import { Label } from 'semantic-ui-react';
 
 
 const styles = {
@@ -23,8 +22,7 @@ const styles = {
       height: 450,
       overflowY: 'auto',
     },
-  };
-// const headers = {headers: {"x-access-token": window.localStorage.getItem("token")},Content_Type: "application/json"};    
+  };   
 let apiBaseUrl = "/categories/";
 
 class CategoriesGet extends Component {
@@ -55,7 +53,7 @@ class CategoriesGet extends Component {
         window.location.assign('/dashboard/category/' + id + '/recipes/');
     };
     handleClose = () => {
-    this.setState({open: false});
+    this.setState({open: false, error: '', message: ''});
     };
     handleChange = event => {
         this.setState({ name: event.target.value });       
@@ -83,14 +81,19 @@ class CategoriesGet extends Component {
             url: apiBaseUrl + id.toString(),
             data: payload
         })
-            .then(function (response) {
-                notify.show(response.data.message, 'success', 6000);            
+        .then(response => {
+            this.setState({message: response.data.message});            
 
-            })
-            .catch(error => {  
-                notify.show(error.response.message, 'error', 4000)
-            })
-            this.getCategories()
+        })
+        .catch(error => {
+            console.log(error.response.data);
+            if(error.response.data.message.name){
+                this.setState({error: error.response.data.message.name[0]})
+            } else if(error.response.data.message) {
+                this.setState({error: error.response.data.message})
+            }
+        })
+        this.getCategories()
     }
     getCategories(value, page) {
         if(value){
@@ -98,23 +101,21 @@ class CategoriesGet extends Component {
         }else if(page){
             apiBaseUrl = `${apiBaseUrl}?page=${page}`;
         };
-        const self = this;
         axiosInstance.get(apiBaseUrl)
         .then(response => {
             if (response.data.error) {
                 notify.show(response.data.error, "error", 4000)
             }
             else {
-                self.setState({categories: response.data.results, pages: response.data['pages']})
-                this.state.categories.map(function(category) {
-                    window.localStorage.setItem('category_name', category.name);
-                })
+                this.setState({categories: response.data.results, pages: response.data['pages']})
             }                      
         })
         .catch(error => {
             if (error.response.data.message === 'Token is Invalid'){
                 window.location.assign('/login')
-            };
+            } else {
+                notify.show(error.response.data.error, 'error', 8000);
+            }
         })
         apiBaseUrl = "/categories/";
     }
@@ -128,13 +129,13 @@ class CategoriesGet extends Component {
     componentDidMount(){
         this.getCategories()
     }
-    render() {
-        const data= this.state.categories;
-        const logged_in = window.localStorage.getItem('logged_in');
-        
-        if (!logged_in) {
+    componentWillMount(){
+        if (!window.localStorage.getItem('token')) {
             window.location.assign('/login');
         };
+    }
+    render() {
+        const data= this.state.categories;
         const actions = [
             <FlatButton
               label="Submit"
@@ -142,7 +143,6 @@ class CategoriesGet extends Component {
               keyboardFocused={true}
               onClick={(event) => {
                   this.editCategory(this.state.editing.id);
-                  this.handleClose();
                   }}
             />,
             <FlatButton
@@ -165,7 +165,7 @@ class CategoriesGet extends Component {
                             style={{marginTop: 16}}
                             name="keyword_search"
                             onChange={this.searchHandler}
-                            class="form-control"
+                            className="form-control"
                             placeholder="Search for a category..."/>
                     </Grid.Column>
                     <Grid.Column width={12}>
@@ -178,6 +178,8 @@ class CategoriesGet extends Component {
                     open={this.state.open}
                     onRequestClose={this.handleClose}
                     >
+                    { this.state.message?
+                        <Label color='green' horizontal>{this.state.message}</Label>: ''}
                     <form onSubmit={this.handleSubmit}>
                         <TextField
                         hintText={this.state.editing.name}
@@ -185,14 +187,14 @@ class CategoriesGet extends Component {
                         defaultValue={this.state.editing.name}
                         errorText={this.state.error}
                         onChange={(event, newValue) =>
-                                            this.setState({ name: newValue })} />
+                                            this.setState({ name: newValue , error: '', message: ''})} />
                     </form>
                 </Dialog> 
                 <div style={styles.root}>
                 <Grid columns={3} divided>
                 <Grid.Row>
                         {data.map((category) =>(
-                        <Grid.Column>
+                        <Grid.Column key={category.id}>
                         <Card raised={true} style={{'marginBottom': 10}}>
                             <Card.Content>
                                 <Card.Header>

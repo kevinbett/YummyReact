@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Button, Card} from 'semantic-ui-react';
-import axios from 'axios';
 import '../../static/css/home.css';
 import 'semantic-ui-css/semantic.min.css';
 import Pagination from 'material-ui-pagination';
 import Chip from 'material-ui/Chip';
-import {blue300, indigo900} from 'material-ui/styles/colors';
+import {blue300 } from 'material-ui/styles/colors';
 import {notify} from 'react-notify-toast';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -14,6 +13,7 @@ import { Grid } from 'semantic-ui-react';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import axiosInstance from '../../Axios';
+import { Label } from 'semantic-ui-react';
 
 
 const styles = {
@@ -34,7 +34,6 @@ const styles = {
       overflowY: 'auto',
     },
   };
-// const headers = {headers: {"x-access-token": window.localStorage.getItem("token")},Content_Type: "application/json"};
 
 class Recipes extends Component {
     constructor(props) {
@@ -67,18 +66,19 @@ class Recipes extends Component {
         });
       };
     handleClose = () => {
-        this.setState({open: false, title_error:'', body_error:'', error:'', editing: ''});
+        this.setState({open: false, title_error:'', body_error:'', 
+        error:'', editing: '', all_error: '', message:''});
     };
     handleChange = event => {
         const {name, value} = event.target;
-        this.setState({[name]: value, title_error:'', body_error:''});       
+        this.setState({[name]: value, title_error:'', body_error:'', all_error: '', message: ''});       
       }
     editRecipe(id) {
         var payload = {
             title: this.state.title,
             body: this.state.body
         }
-        let apiBaseUrl = `/recipes/`;        
+        let apiBaseUrl = `/recipes/`;
         axiosInstance({
             method: 'put',
             url: apiBaseUrl + id.toString(),
@@ -88,19 +88,21 @@ class Recipes extends Component {
                 "x-access-token": window.localStorage.getItem('token')
             }
         })
-            .then(function (response) {
-                notify.show(response.data.Message, 'success', 6000);            
-
+            .then(response => {
+                this.setState({message: response.data.message})
             })
-            .catch(error => {  
+            .catch(error => { 
                 if (error.response.data.message === 'Token is Invalid'){
                     window.location.assign('/login')
+                } else if(error.response.data.message.error){
+                    this.setState({all_error: error.response.data.message.error})
+                } else {
+                    this.setState({all_error: error.response.data.message})
                 }
             })
             this.getRecipes()
     }
     deleteRecipe(id) {
-        const self = this;
         let apiBaseUrl = `/recipes/`;
         axiosInstance.delete(apiBaseUrl + id.toString())
             .then(response => {         
@@ -121,23 +123,19 @@ class Recipes extends Component {
 
         axiosInstance.post(apiBaseUrl ,recipe)
             .then(res => {
+                this.setState({all_error: '', title_error: '', body_error: ''})
                 this.getRecipes()
                 notify.show(res.data, 'success', 4000)
             })
             .catch(error => {
                 if (error.response.data.message.title){
                     this.setState({title_error: error.response.data.message.title[0]})
-                    //  notify.show(error.response.data.message.title[0]);
                 } else if (error.response.data.message.body){
-                    this.setState({body_error: error.response.data.message.body[0]})                    
-                    // notify.show(error.response.data.message.body[0], 'error', 4000);
-                } else if (error.response.data.message){
-                    notify.show(error.response.data.message.error, 'error', 4000);
+                    this.setState({body_error: error.response.data.message.body[0]})
                 } else {
-                    notify.show("Error while creating recipe", 'error', 4000);
+                    this.setState({all_error: error.response.data.message});
                 }
-            }) 
-            this.setState({name: ''});                      
+            })                    
     }
     
     
@@ -151,8 +149,7 @@ class Recipes extends Component {
         };
         const self = this;
         axiosInstance.get(apiBaseUrl)
-        .then(response => {
-            console.log(response.data.results[0].category.name);           
+        .then(response => {           
             self.setState({recipes: response.data.results, category_name: response.data.results[0].category.name, 
                 pages: response.data['pages']})                         
         })
@@ -184,6 +181,11 @@ class Recipes extends Component {
     componentDidMount(){
         this.getRecipes()
     }
+    componentWillMount(){
+        if (!window.localStorage.getItem('token')) {
+            window.location.assign('/login');
+        };
+    }
     render() {
         const data= this.state.recipes;
         const addactions = [
@@ -193,7 +195,6 @@ class Recipes extends Component {
               keyboardFocused={true}
               onClick={(event) => {
                   this.handleSubmit();
-                    {/* this.handleClose(); */}
                   }}
             />,
             <FlatButton
@@ -210,7 +211,6 @@ class Recipes extends Component {
               keyboardFocused={true}
               onClick={(event) => {
                   this.editRecipe(this.state.editing.id);
-                  this.handleClose();
                   }}
             />,
             <FlatButton
@@ -235,14 +235,14 @@ class Recipes extends Component {
                             hintText="Enter recipe title"
                             floatingLabelText="Recipe title"
                             fullWidth={true}
-                            errorText={this.state.title_error}
+                            errorText={this.state.title_error || this.state.all_error}
                             name='title'
                             onChange={this.handleChange} />
                             <br/>
                             <TextField
                             hintText="Enter recipe body"
                             floatingLabelText="Recipe body"
-                            errorText={this.state.body_error}                            
+                            errorText={this.state.body_error || this.state.all_error}                            
                             name='body'
                             rows={2}
                             multiLine={true}
@@ -258,12 +258,15 @@ class Recipes extends Component {
                         open={this.state.open.editing}
                         onRequestClose={this.handleClose}
                         >
+                        { this.state.message?
+                        <Label color='green' horizontal>{this.state.message}</Label>: ''}
                         <form onSubmit={this.handleSubmit}>
                             <TextField
                             hintText="Enter recipe title"
                             floatingLabelText="Recipe title"
                             fullWidth={true}
                             name='title'
+                            errorText={this.state.all_error || this.state.title_error}
                             defaultValue={this.state.editing.title}
                             onChange={this.handleChange} />
                             <br/>
@@ -274,6 +277,7 @@ class Recipes extends Component {
                             multiLine={true}
                             name='body'
                             fullWidth={true}
+                            errorText={this.state.all_error || this.state.body_error}
                             defaultValue={this.state.editing.body}
                             rowsMax={4}
                             onChange={this.handleChange} />
@@ -303,7 +307,7 @@ class Recipes extends Component {
                             style={{marginTop: 16}}
                             name="keyword_search"
                             onChange={this.searchHandler}
-                            class="form-control"
+                            className="form-control"
                             placeholder="Search for a recipe..."/>
                     </Grid.Column>
                     <Grid.Column width={12}>
@@ -313,7 +317,7 @@ class Recipes extends Component {
                 <Grid columns={3} divided>
                 <Grid.Row>
                         {data.map((recipe) =>( 
-                        <Grid.Column>
+                        <Grid.Column key={recipe.id}>
                         <Card raised={true} style={{'marginBottom': 10}}>
                             <Card.Content>
                                 <Card.Header>

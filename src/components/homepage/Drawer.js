@@ -12,7 +12,6 @@ import Dialog from 'material-ui/Dialog';
 import {BrowserRouter} from "react-router-dom";
 import {notify} from 'react-notify-toast';
 import axiosInstance from '../../Axios';
-import CategoriesGet from '../categories/Categories';
 
 class LeftDrawer extends React.Component {
 
@@ -38,7 +37,7 @@ class LeftDrawer extends React.Component {
       this.setState({open: false});
     };
     handleChange = event => {
-      this.setState({ name: event.target.value });       
+      this.setState({ name: event.target.value, error: '' });       
     }
     handleSubmit(event){
       event.preventDefault();
@@ -48,11 +47,15 @@ class LeftDrawer extends React.Component {
   
       axiosInstance.post('/categories/',category)
         .then(res => {
-          window.location.assign('/dashboard/categories');
           notify.show(res.data.message, 'success', 4000);          
+          window.location.assign('/dashboard/categories');
         })
         .catch(error => {
-          notify.show(error.response.data.message, 'error', 6000);
+          if(error.response.data.message.name){
+            this.setState({error: error.response.data.message.name[0]})
+          } else {
+            this.setState({error: error.response.data.message});
+          }
         })
     }
   
@@ -85,7 +88,6 @@ class LeftDrawer extends React.Component {
         <TextField
           hintText="Enter category name"
           floatingLabelText="Category name"
-          required
           errorText={this.state.error}
           onChange={this.handleChange} />
         </form>
@@ -93,7 +95,7 @@ class LeftDrawer extends React.Component {
           <Drawer open={this.props.open} zDepth={0} containerStyle={{overflowX: 'hidden'}}>
           <AppBar title="Yummy Recipes" style={{backgroundColor: orange700}} showMenuIconButton={false} />
             <List>
-                <ListItem primaryText="Categories" initiallyOpen={true}
+                <ListItem key={0} primaryText="Categories" initiallyOpen={true}
                 primaryTogglesNestedList={true}  nestedItems={[ 
                   <ListItem
                   key={1}

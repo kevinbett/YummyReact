@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import FlatButton from 'material-ui/FlatButton';
 import AppBar from 'material-ui/AppBar';
 import Paper from 'material-ui/Paper';
-import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
+import {Toolbar, ToolbarTitle} from 'material-ui/Toolbar';
 import {orange700} from 'material-ui/styles/colors';
 import '../../static/css/home.css';
 import Navigation from '../homepage/Home';
@@ -19,10 +18,7 @@ const paperStyle = {
     display: 'inline-block',
     backgroundColor: 'transparent',    
 };
-const buttonStyle = {
-    backgroundColor: 'transparent',
-    color: 'white'
-  };
+
 class Home extends Component {
     constructor(props) {
         super(props);

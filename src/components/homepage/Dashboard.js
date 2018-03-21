@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import FlatButton from 'material-ui/FlatButton';
 import AppBar from 'material-ui/AppBar';
 import Paper from 'material-ui/Paper';
-import { ToolbarGroup} from 'material-ui/Toolbar';
 import { orange700} from 'material-ui/styles/colors';
 import '../../static/css/home.css';
 import Navigation from '../homepage/Home';
@@ -11,15 +9,13 @@ import Welcome from '../homepage/Welcome';
 import ChangePassword from '../user/Change_password';
 import LeftDrawer from '../homepage/Drawer';
 import CategoryGet from '../categories/Categories';
-import {Link, Route} from "react-router-dom";
-import ActionHome from 'material-ui/svg-icons/action/home';
+import { Route } from "react-router-dom";
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import Recipes from '../recipes/Recipes';
 import Notifications from 'react-notify-toast';
-import axios from 'axios';
 import {notify} from 'react-notify-toast';
 
 
@@ -32,11 +28,6 @@ const paperStyle = {
     display: 'inline-block',
     backgroundColor: 'transparent',    
 };
-const buttonStyle = {
-    backgroundColor: 'transparent',
-    color: 'white'
-  };  
-const logged_in = window.localStorage.getItem('logged_in');
 
 class Dashboard extends Component {
     constructor(props) {
@@ -44,14 +35,17 @@ class Dashboard extends Component {
         this.state = {open: false, username:'', error:'', message:''}
         this.handleLogin = this.handleLogin.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
-        this.handleChangePassword = this.handleChangePassword.bind(this);                            
+        this.handleChangePassword = this.handleChangePassword.bind(this);
+        this.componentWillMount = this.componentWillMount.bind(this);                          
     }
     handleLogin(event){
         event.preventDefault();
         this.props.history.push(`/login`);
     }
     handleLogout = () => {
-        localStorage.clear();
+        window.localStorage.removeItem('token');
+        window.localStorage.setItem('logged_in', false)
+        window.localStorage.setItem('message', "Successfully logged out")
         window.location.assign('/login');
         notify.show("Successfully logged out", 'success', 4000);                
     }
@@ -62,10 +56,12 @@ class Dashboard extends Component {
     
     handleToggle = () => this.setState({open: !this.state.open});
 
-    render() {
-        if (!logged_in) {
+    componentWillMount(){
+        if (!window.localStorage.getItem('token')) {
             window.location.assign('/login');
         };
+    }
+    render() {
         const rightButtons = (
             <div className="appBarIcons">
             <IconMenu

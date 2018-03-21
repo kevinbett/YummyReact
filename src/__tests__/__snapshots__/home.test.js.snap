@@ -19,7 +19,6 @@ exports[`Navigation Component renders without crashing 1`] = `
           onMouseLeave={[Function]}
         />
       }
-      label="Home"
       onClick={[Function]}
     />
     <BottomNavigationItem
@@ -30,7 +29,6 @@ exports[`Navigation Component renders without crashing 1`] = `
           onMouseLeave={[Function]}
         />
       }
-      label="Heroku"
       onClick={[Function]}
     />
     <BottomNavigationItem
@@ -41,7 +39,6 @@ exports[`Navigation Component renders without crashing 1`] = `
           onMouseLeave={[Function]}
         />
       }
-      label="Github"
       onClick={[Function]}
     />
   </BottomNavigation>
