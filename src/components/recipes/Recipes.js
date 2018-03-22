@@ -90,6 +90,7 @@ class Recipes extends Component {
         })
             .then(response => {
                 this.setState({message: response.data.message})
+                this.getRecipes()                
             })
             .catch(error => { 
                 if (error.response.data.message === 'Token is Invalid'){
