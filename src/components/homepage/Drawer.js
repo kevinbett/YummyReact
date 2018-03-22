@@ -47,8 +47,9 @@ class LeftDrawer extends React.Component {
   
       axiosInstance.post('categories/',category)
         .then(res => {
-          notify.show(res.data.message, 'success', 4000);          
-          window.location.assign('/dashboard/categories');
+          notify.show(res.data.message, 'success', 4000);
+          this.setState({open: false})
+          this.props.viewCategories();
         })
         .catch(error => {
           if(error.response.data.message.name){
@@ -95,7 +96,7 @@ class LeftDrawer extends React.Component {
           <Drawer open={this.props.open} zDepth={0} containerStyle={{overflowX: 'hidden'}}>
           <AppBar title="Yummy Recipes" style={{backgroundColor: orange700}} showMenuIconButton={false} />
             <List>
-                <ListItem key={0} primaryText="Categories" initiallyOpen={true}
+                <ListItem key={7} primaryText="Categories" initiallyOpen={true}
                 primaryTogglesNestedList={true}  nestedItems={[ 
                   <ListItem
                   key={1}
@@ -104,7 +105,7 @@ class LeftDrawer extends React.Component {
                   leftIcon={<Add />}
                 />,
                 <ListItem
-                  key={1}
+                  key={2}
                   onClick={this.handleViewcategories}
                   primaryText="View all categories"
                   leftIcon={<RemoveRedEye />}

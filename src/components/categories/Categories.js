@@ -10,6 +10,7 @@ import TextField from 'material-ui/TextField';
 import { Grid } from 'semantic-ui-react';
 import axiosInstance from '../../Axios';
 import { Label } from 'semantic-ui-react';
+import LeftDrawer from '../homepage/Drawer';
 
 
 const styles = {
@@ -95,7 +96,7 @@ class CategoriesGet extends Component {
         })
         this.getCategories()
     }
-    getCategories(value, page) {
+    getCategories = (value, page) => {
         if(value){
             apiBaseUrl = `${apiBaseUrl}?q=${value}`;
         }else if(page){
@@ -107,7 +108,7 @@ class CategoriesGet extends Component {
                 notify.show(response.data.error, "error", 4000)
             }
             else {
-                this.setState({categories: response.data.results, pages: response.data['pages']})
+                this.setState({open:false, categories: response.data.results, pages: response.data['pages']})
             }                      
         })
         .catch(error => {
@@ -153,7 +154,8 @@ class CategoriesGet extends Component {
             />,
           ];
         return (
-            <div>
+            <div> 
+            <LeftDrawer viewCategories = {this.getCategories}/>               
             <div>
                 <Grid>
                 <Notifications/>

@@ -7,7 +7,6 @@ import '../../static/css/home.css';
 import Navigation from '../homepage/Home';
 import Welcome from '../homepage/Welcome';
 import ChangePassword from '../user/Change_password';
-import LeftDrawer from '../homepage/Drawer';
 import CategoryGet from '../categories/Categories';
 import { Route } from "react-router-dom";
 import IconMenu from 'material-ui/IconMenu';
@@ -84,7 +83,6 @@ class Dashboard extends Component {
                         style={{backgroundColor: orange700}}>
                         <Notifications options={{zIndex: 5000}}/>
                         </AppBar>
-                        <LeftDrawer/>
                     <Paper style={paperStyle} zDepth={5}>                        
                         <div>
                             <Route exact path="/dashboard/" component={Welcome} />                                                                                  

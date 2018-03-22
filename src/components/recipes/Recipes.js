@@ -14,6 +14,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import axiosInstance from '../../Axios';
 import { Label } from 'semantic-ui-react';
+import RecipeDrawer from '../homepage/RecipeDrawer';
 
 
 const styles = {
@@ -124,7 +125,7 @@ class Recipes extends Component {
 
         axiosInstance.post(apiBaseUrl ,recipe)
             .then(res => {
-                this.setState({all_error: '', title_error: '', body_error: ''})
+                this.setState({open: false, all_error: '', title_error: '', body_error: ''})
                 this.getRecipes()
                 notify.show(res.data, 'success', 4000)
             })
@@ -136,7 +137,7 @@ class Recipes extends Component {
                 } else {
                     this.setState({all_error: error.response.data.message});
                 }
-            })                    
+            })                  
     }
     
     
@@ -223,6 +224,7 @@ class Recipes extends Component {
           ];
         return (
             <div>
+                <RecipeDrawer/>
             <div>
                     <Dialog
                         title="Add a new recipe"
