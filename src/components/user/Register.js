@@ -60,13 +60,12 @@ class Register extends Component {
             "password": this.state.password,
             "email": this.state.email
         }
-        axios.post('register/', payload)
+        axios.post('auth/register/', payload)
             .then(response => {
                 window.localStorage.setItem('message', response.data.message);
                 window.location.assign(`/login`);                               
             })
             .catch(error => {
-                console.log(error.response.data)
                 if (error.response.data.error) {
                     this.setState({username_error: error.response.data.error})
                 } else if (error.response.data.message.email) {
