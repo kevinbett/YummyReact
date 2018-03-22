@@ -83,11 +83,10 @@ class CategoriesGet extends Component {
             data: payload
         })
         .then(response => {
-            this.setState({message: response.data.message});            
+            this.setState({open: false, message: response.data.message});            
 
         })
         .catch(error => {
-            console.log(error.response.data);
             if(error.response.data.message.name){
                 this.setState({error: error.response.data.message.name[0]})
             } else if(error.response.data.message) {

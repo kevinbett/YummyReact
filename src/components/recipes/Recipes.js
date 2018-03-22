@@ -90,7 +90,7 @@ class Recipes extends Component {
             }
         })
             .then(response => {
-                this.setState({message: response.data.message})
+                this.setState({open: false, message: response.data.message})
                 this.getRecipes()                
             })
             .catch(error => { 
