@@ -45,7 +45,7 @@ class LeftDrawer extends React.Component {
         name: this.state.name        
       };  
   
-      axiosInstance.post('/categories/',category)
+      axiosInstance.post('categories/',category)
         .then(res => {
           notify.show(res.data.message, 'success', 4000);          
           window.location.assign('/dashboard/categories');
