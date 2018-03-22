@@ -78,7 +78,7 @@ class Recipes extends Component {
             title: this.state.title,
             body: this.state.body
         }
-        let apiBaseUrl = `/recipes/`;
+        let apiBaseUrl = `recipes/`;
         axiosInstance({
             method: 'put',
             url: apiBaseUrl + id.toString(),
@@ -103,7 +103,7 @@ class Recipes extends Component {
             this.getRecipes()
     }
     deleteRecipe(id) {
-        let apiBaseUrl = `/recipes/`;
+        let apiBaseUrl = `recipes/`;
         axiosInstance.delete(apiBaseUrl + id.toString())
             .then(response => {         
                 notify.show(response.data.Message, 'success', 6000); 
@@ -114,7 +114,7 @@ class Recipes extends Component {
 
     handleSubmit = event => {
         let category_id =  this.props.match.params.id 
-        let apiBaseUrl = `/category/${category_id}/recipes/`;
+        let apiBaseUrl = `category/${category_id}/recipes/`;
 
         const recipe = {
             title: this.state.title,
@@ -141,7 +141,7 @@ class Recipes extends Component {
     
     getRecipes(value, page) {
         let category_id =  this.props.match.params.id 
-        let apiBaseUrl = `/category/${category_id}/recipes/`;
+        let apiBaseUrl = `category/${category_id}/recipes/`;
         if(value){
             apiBaseUrl = `${apiBaseUrl}?q=${value}`;
         }else if(page){
@@ -166,7 +166,7 @@ class Recipes extends Component {
                 notify.show("Server error", 'error', 4000)
             }            
         })
-        apiBaseUrl = `/category/${category_id}/recipes/`;
+        apiBaseUrl = `category/${category_id}/recipes/`;
     }
     searchHandler = (event) => {
         event.preventDefault()

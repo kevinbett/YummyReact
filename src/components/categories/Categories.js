@@ -23,7 +23,7 @@ const styles = {
       overflowY: 'auto',
     },
   };   
-let apiBaseUrl = "/categories/";
+let apiBaseUrl = "categories/";
 
 class CategoriesGet extends Component {
     constructor(props) {
