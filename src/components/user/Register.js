@@ -55,13 +55,12 @@ class Register extends Component {
         );
     }
     handleClick(event) {
-        var apiBaseUrl = "http://localhost:5000/api/auth/";
         var payload = {
             "username": this.state.username,
             "password": this.state.password,
             "email": this.state.email
         }
-        axios.post(apiBaseUrl + 'register/', payload)
+        axios.post('register/', payload)
             .then(response => {
                 window.localStorage.setItem('message', response.data.message);
                 window.location.assign(`/login`);                               
