@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import axios from 'axios';
 import '../../static/css/home.css';
 import {notify} from 'react-notify-toast';
+import axiosInstance from '../../Axios';
 
 
 class Register extends Component {
@@ -60,7 +60,7 @@ class Register extends Component {
             "password": this.state.password,
             "email": this.state.email
         }
-        axios.post('auth/register/', payload)
+        axiosInstance.post('auth/register/', payload)
             .then(response => {
                 window.localStorage.setItem('message', response.data.message);
                 window.location.assign(`/login`);                               
