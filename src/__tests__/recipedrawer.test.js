@@ -10,8 +10,4 @@ describe('RecipeDrawer Component', () => {
     it('renders without crashing', () => {
         expect(shallowToJson(wrapper)).toMatchSnapshot();
     });
-    it('renders state initially', () => {
-        expect(wrapper.state().username).toEqual('');
-        expect(wrapper.state().password).toEqual('');
-    })
 });

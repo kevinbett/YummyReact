@@ -2,6 +2,9 @@
 
 exports[`CategoryGet Component renders without crashing 1`] = `
 <div>
+  <LeftDrawer
+    viewCategories={[Function]}
+  />
   <div>
     <Grid>
       <_class
@@ -28,7 +31,7 @@ exports[`CategoryGet Component renders without crashing 1`] = `
         width={5}
       >
         <TextField
-          class="form-control"
+          className="form-control"
           disabled={false}
           floatingLabelFixed={false}
           fullWidth={false}

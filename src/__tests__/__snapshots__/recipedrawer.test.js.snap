@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RecipeDrawer Component renders without crashing 1`] = `
+<BrowserRouter>
+  <div>
+    <Drawer
+      containerStyle={
+        Object {
+          "overflowX": "hidden",
+        }
+      }
+      disableSwipeToOpen={false}
+      docked={true}
+      open={null}
+      openSecondary={false}
+      swipeAreaWidth={30}
+      width={null}
+      zDepth={0}
+    >
+      <AppBar
+        showMenuIconButton={false}
+        style={
+          Object {
+            "backgroundColor": "#f57c00",
+          }
+        }
+        title="Yummy Recipes"
+        zDepth={1}
+      />
+      <List>
+        <ListItem
+          autoGenerateNestedIndicator={true}
+          containerElement="span"
+          disableKeyboardFocus={false}
+          disabled={false}
+          initiallyOpen={true}
+          insetChildren={false}
+          key="7"
+          leftIcon={<ImageRemoveRedEye />}
+          nestedItems={Array []}
+          nestedLevel={0}
+          onClick={[Function]}
+          onKeyboardFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onNestedListToggle={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          open={null}
+          primaryText="Back to categories"
+          primaryTogglesNestedList={false}
+          secondaryTextLines={1}
+        />
+      </List>
+      <Divider
+        inset={false}
+      />
+    </Drawer>
+  </div>
+</BrowserRouter>
+`;

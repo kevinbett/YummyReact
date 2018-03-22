@@ -4,203 +4,201 @@ exports[`Login Component renders without crashing 1`] = `
 <div
   className="Login"
 >
-  <MuiThemeProvider>
-    <Dialog
-      actions={
-        Array [
-          <FlatButton
-            disabled={false}
-            fullWidth={false}
-            keyboardFocused={true}
-            label="Submit"
-            labelPosition="after"
-            labelStyle={Object {}}
-            onClick={[Function]}
-            onKeyboardFocus={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-            onTouchStart={[Function]}
-            primary={true}
-            secondary={false}
-          />,
-          <FlatButton
-            disabled={false}
-            fullWidth={false}
-            keyboardFocused={false}
-            label="Close"
-            labelPosition="after"
-            labelStyle={Object {}}
-            onClick={[Function]}
-            onKeyboardFocus={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-            onTouchStart={[Function]}
-            primary={false}
-            secondary={false}
-          />,
-        ]
-      }
-      autoDetectWindowHeight={true}
-      autoScrollBodyContent={false}
-      modal={false}
-      onRequestClose={[Function]}
-      open={false}
-      repositionOnUpdate={true}
-      title="Reset Password"
-    >
-      <form>
-        <RefreshIndicator
-          left={360}
-          loadingColor="#FF9800"
-          percentage={0}
-          size={50}
-          status="hide"
-          top={70}
-        />
-        <TextField
+  <Dialog
+    actions={
+      Array [
+        <FlatButton
           disabled={false}
-          errorText=""
-          floatingLabelFixed={false}
-          floatingLabelText="Enter Email"
-          fullWidth={true}
-          hintText="Enter Email"
-          multiLine={false}
-          onChange={[Function]}
-          rows={1}
-          type="text"
-          underlineShow={true}
-        />
-      </form>
-    </Dialog>
-    <div>
-      <Tabs
-        initialSelectedIndex={0}
+          fullWidth={false}
+          keyboardFocused={true}
+          label="Submit"
+          labelPosition="after"
+          labelStyle={Object {}}
+          onClick={[Function]}
+          onKeyboardFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onTouchStart={[Function]}
+          primary={true}
+          secondary={false}
+        />,
+        <FlatButton
+          disabled={false}
+          fullWidth={false}
+          keyboardFocused={false}
+          label="Close"
+          labelPosition="after"
+          labelStyle={Object {}}
+          onClick={[Function]}
+          onKeyboardFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onTouchStart={[Function]}
+          primary={false}
+          secondary={false}
+        />,
+      ]
+    }
+    autoDetectWindowHeight={true}
+    autoScrollBodyContent={false}
+    modal={false}
+    onRequestClose={[Function]}
+    open={false}
+    repositionOnUpdate={true}
+    title="Reset Password"
+  >
+    <form>
+      <RefreshIndicator
+        left={360}
+        loadingColor="#FF9800"
+        percentage={0}
+        size={50}
+        status="hide"
+        top={70}
+      />
+      <TextField
+        disabled={false}
+        errorText=""
+        floatingLabelFixed={false}
+        floatingLabelText="Enter Email"
+        fullWidth={true}
+        hintText="Enter Email"
+        multiLine={false}
         onChange={[Function]}
-        tabItemContainerStyle={
+        rows={1}
+        type="text"
+        underlineShow={true}
+      />
+    </form>
+  </Dialog>
+  <div>
+    <Tabs
+      initialSelectedIndex={0}
+      onChange={[Function]}
+      tabItemContainerStyle={
+        Object {
+          "background": "none",
+        }
+      }
+      value={0}
+    >
+      <Tab
+        label="Login"
+        style={
           Object {
-            "background": "none",
+            "color": "black",
           }
         }
         value={0}
-      >
-        <Tab
-          label="Login"
-          style={
-            Object {
-              "color": "black",
-            }
-          }
-          value={0}
-        />
-        <Tab
-          label="Register"
-          style={
-            Object {
-              "color": "black",
-            }
-          }
-          value={1}
-        />
-      </Tabs>
-      <ReactSwipableView
-        animateHeight={false}
-        animateTransitions={true}
-        axis="x"
-        disableLazyLoading={false}
-        disabled={false}
-        enableMouseEvents={false}
-        hysteresis={0.6}
-        ignoreNativeScroll={false}
-        index={0}
-        onChangeIndex={[Function]}
-        resistance={false}
-        springConfig={
+      />
+      <Tab
+        label="Register"
+        style={
           Object {
-            "delay": "0s",
-            "duration": "0.35s",
-            "easeFunction": "cubic-bezier(0.15, 0.3, 0.25, 1)",
+            "color": "black",
           }
         }
-        threshold={5}
-      >
-        <div>
-          <form>
-            <TextField
-              disabled={false}
-              errorText=""
-              floatingLabelFixed={false}
-              floatingLabelText="Username"
-              fullWidth={false}
-              hintText="Enter your Username"
-              multiLine={false}
-              onChange={[Function]}
-              rows={1}
-              type="text"
-              underlineShow={true}
-            />
-            <br />
-            <TextField
-              disabled={false}
-              errorText=""
-              floatingLabelFixed={false}
-              floatingLabelText="Password"
-              fullWidth={false}
-              hintText="Enter your Password"
-              multiLine={false}
-              onChange={[Function]}
-              rows={1}
-              type="password"
-              underlineShow={true}
-            />
-            <br />
-            <RaisedButton
-              disabled={false}
-              fullWidth={false}
-              label="Submit"
-              labelPosition="after"
-              onClick={[Function]}
-              primary={false}
-              secondary={true}
-              style={
-                Object {
-                  "marginBottom": 0,
-                }
+        value={1}
+      />
+    </Tabs>
+    <ReactSwipableView
+      animateHeight={false}
+      animateTransitions={true}
+      axis="x"
+      disableLazyLoading={false}
+      disabled={false}
+      enableMouseEvents={false}
+      hysteresis={0.6}
+      ignoreNativeScroll={false}
+      index={0}
+      onChangeIndex={[Function]}
+      resistance={false}
+      springConfig={
+        Object {
+          "delay": "0s",
+          "duration": "0.35s",
+          "easeFunction": "cubic-bezier(0.15, 0.3, 0.25, 1)",
+        }
+      }
+      threshold={5}
+    >
+      <div>
+        <form>
+          <TextField
+            disabled={false}
+            errorText=""
+            floatingLabelFixed={false}
+            floatingLabelText="Username"
+            fullWidth={false}
+            hintText="Enter your Username"
+            multiLine={false}
+            onChange={[Function]}
+            rows={1}
+            type="text"
+            underlineShow={true}
+          />
+          <br />
+          <TextField
+            disabled={false}
+            errorText=""
+            floatingLabelFixed={false}
+            floatingLabelText="Password"
+            fullWidth={false}
+            hintText="Enter your Password"
+            multiLine={false}
+            onChange={[Function]}
+            rows={1}
+            type="password"
+            underlineShow={true}
+          />
+          <br />
+          <RaisedButton
+            disabled={false}
+            fullWidth={false}
+            label="Submit"
+            labelPosition="after"
+            onClick={[Function]}
+            primary={false}
+            secondary={true}
+            style={
+              Object {
+                "marginBottom": 0,
               }
-              type="submit"
-            />
-            <br />
-            <br />
-            <p>
-              Forgot password? 
-              <FlatButton
-                disabled={false}
-                fullWidth={false}
-                labelPosition="after"
-                labelStyle={Object {}}
-                onClick={[Function]}
-                onKeyboardFocus={[Function]}
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-                onTouchStart={[Function]}
-                primary={false}
-                secondary={false}
-              >
-                Reset
-              </FlatButton>
-            </p>
-          </form>
-        </div>
-        <div
-          style={
-            Object {
-              "padding": 10,
             }
+            type="submit"
+          />
+          <br />
+          <br />
+          <p>
+            Forgot password? 
+            <FlatButton
+              disabled={false}
+              fullWidth={false}
+              labelPosition="after"
+              labelStyle={Object {}}
+              onClick={[Function]}
+              onKeyboardFocus={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onTouchStart={[Function]}
+              primary={false}
+              secondary={false}
+            >
+              Reset
+            </FlatButton>
+          </p>
+        </form>
+      </div>
+      <div
+        style={
+          Object {
+            "padding": 10,
           }
-        >
-          <Register />
-        </div>
-      </ReactSwipableView>
-    </div>
-  </MuiThemeProvider>
+        }
+      >
+        <Register />
+      </div>
+    </ReactSwipableView>
+  </div>
 </div>
 `;

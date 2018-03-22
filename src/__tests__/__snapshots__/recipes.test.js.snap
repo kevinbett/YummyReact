@@ -2,6 +2,7 @@
 
 exports[`Recipes Component renders without crashing 1`] = `
 <div>
+  <RecipeDrawer />
   <div>
     <Dialog
       actions={
@@ -228,7 +229,7 @@ exports[`Recipes Component renders without crashing 1`] = `
         width={5}
       >
         <TextField
-          class="form-control"
+          className="form-control"
           disabled={false}
           floatingLabelFixed={false}
           fullWidth={false}

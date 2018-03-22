@@ -94,6 +94,7 @@ exports[`LeftDrawer Component renders without crashing 1`] = `
           disabled={false}
           initiallyOpen={true}
           insetChildren={false}
+          key="7"
           nestedItems={
             Array [
               <ListItem
