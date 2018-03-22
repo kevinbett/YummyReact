@@ -8,6 +8,10 @@ This is a front-end based that consumes an API made with Python/Flask.
 * Material-UI
 * Semantic-UI
 
+## Important Links
+
+* [Heroku](https://recipeyummy.herokuapp.com)
+* [API](http://yummyrecipesapi.herokuapp.com/apidocs/)
 
 ## Installation
 
@@ -31,23 +35,23 @@ use npm or yarn
   using npm
 
        
-        $ npm run
+        $ npm start
        
    
   using yarn
    
         
-        $ yarn run
+        $ yarn start
     
 #### 3. Running the Tests
 
   using npm
 
        
-         $ npm run test --coverage
+         $ npm test -- -u --coverage
        
    
   using yarn
    
         
-        $ yarn run test --coverage
+        $ yarn  test -- -u --coverage
