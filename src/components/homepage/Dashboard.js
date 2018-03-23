@@ -5,7 +5,6 @@ import Paper from 'material-ui/Paper';
 import { orange700} from 'material-ui/styles/colors';
 import '../../static/css/home.css';
 import Navigation from '../homepage/Home';
-import Welcome from '../homepage/Welcome';
 import ChangePassword from '../user/Change_password';
 import CategoryGet from '../categories/Categories';
 import { Route } from "react-router-dom";
@@ -50,7 +49,7 @@ class Dashboard extends Component {
     }
     handleChangePassword = (event) => {
         event.preventDefault();
-        window.location.assign('/dashboard/change-password');                
+        window.location.assign('/change-password');                
     }
     
     handleToggle = () => this.setState({open: !this.state.open});
@@ -61,6 +60,9 @@ class Dashboard extends Component {
         };
     }
     render() {
+        if (!window.localStorage.getItem('token')) {
+            window.location.assign('/login');
+        };
         const rightButtons = (
             <div className="appBarIcons">
             <IconMenu
@@ -84,11 +86,10 @@ class Dashboard extends Component {
                         <Notifications options={{zIndex: 5000}}/>
                         </AppBar>
                     <Paper style={paperStyle} zDepth={5}>                        
-                        <div>
-                            <Route exact path="/dashboard/" component={Welcome} />                                                                                  
-                            <Route exact path="/dashboard/categories" component={CategoryGet} />
-                            <Route exact path="/dashboard/category/:id/recipes/" component={Recipes} />
-                            <Route exact path="/dashboard/change-password" component={ChangePassword} />                                                                             
+                        <div>                                                                                  
+                            <Route exact path="/categories" component={CategoryGet} />
+                            <Route exact path="/category/:id/recipes/" component={Recipes} />
+                            <Route exact path="/change-password" component={ChangePassword} />                                                                             
                         </div>
                     </Paper>              
                     <Navigation/>

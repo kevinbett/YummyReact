@@ -17,7 +17,7 @@ class RecipeDrawer extends React.Component {
     }
     handleViewcategories(event){
         event.preventDefault();
-        window.location.assign('/dashboard/categories');
+        window.location.assign('/categories');
     }
   
     render() {

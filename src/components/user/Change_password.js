@@ -4,6 +4,7 @@ import {notify} from 'react-notify-toast';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import axiosInstance from '../../Axios';
+import RecipeDrawer from '../homepage/RecipeDrawer';
 
 
 class ChangePassword extends Component {
@@ -36,6 +37,7 @@ handleChangePassword(event){
   render() {
     return (
       <div>
+          <RecipeDrawer/>
     <h3 style={{marginTop: 20}}> Change Password</h3>
     <form>
         <TextField

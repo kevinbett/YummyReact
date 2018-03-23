@@ -180,7 +180,7 @@ class Login extends Component {
                 window.localStorage.setItem("token", response.data.token)
                 window.localStorage.setItem("username", response.data.username)
                 window.localStorage.setItem("logged_in", true)
-                window.location.assign('/dashboard/categories')
+                window.location.assign('/categories')
                 }
             )
             .catch(error => {

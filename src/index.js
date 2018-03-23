@@ -15,12 +15,10 @@ ReactDOM.render(
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" component={Home} />
           <Route exact path="/login" component={Home} />
-          <Route exact path="/reset-password" component={Home} />          
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/dashboard/change-password" component={Dashboard} />          
-          <Route exact path="/dashboard/categories" component={Dashboard} />
-          <Route exact path="/dashboard/category" component={Dashboard} />
-          <Route exact path="/dashboard/category/:id/recipes/" component={Dashboard} />                                  
+          <Route exact path="/reset-password" component={Home} />
+          <Route exact path="/change-password" component={Dashboard} />          
+          <Route exact path="/categories" component={Dashboard} />
+          <Route exact path="/category/:id/recipes/" component={Dashboard} />                                  
         </Switch>
       </Router>
     </MuiThemeProvider>,

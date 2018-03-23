@@ -190,6 +190,9 @@ class Recipes extends Component {
     }
     render() {
         const data= this.state.recipes;
+        if (!window.localStorage.getItem('token')) {
+            window.location.assign('/login');
+        };
         const addactions = [
             <FlatButton
               label="submit"

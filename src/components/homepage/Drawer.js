@@ -27,7 +27,7 @@ class LeftDrawer extends React.Component {
     }
     handleViewcategories(event){
         event.preventDefault();
-        window.location.assign('/dashboard/categories');
+        window.location.assign('/categories');
     }
     handleOpen = () => {
       this.setState({open: true});

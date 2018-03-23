@@ -51,7 +51,7 @@ class CategoriesGet extends Component {
     };
 
     handleViewrecipes = (id) => {
-        window.location.assign('/dashboard/category/' + id + '/recipes/');
+        window.location.assign('/category/' + id + '/recipes/');
     };
     handleClose = () => {
     this.setState({open: false, error: '', message: ''});
@@ -136,6 +136,9 @@ class CategoriesGet extends Component {
     }
     render() {
         const data= this.state.categories;
+        if (!window.localStorage.getItem('token')) {
+            window.location.assign('/login');
+        };
         const actions = [
             <FlatButton
               label="Submit"
